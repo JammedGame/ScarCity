@@ -1,26 +1,26 @@
 export { GameLogic };
 
-import Engineer from "./Engineer";
+import * as TBX from "engineer-js";
 
-import { MainMenu } from "./MainMenu";
-import { GameScene } from "./GameScene";
+import { Menu } from "./Menu/Menu";
+import { GameScene } from "./GameScene/GameScene";
 
 class GameLogic
 {
-    private _Game:any;
-    private _Runner:any;
+    private _Game:TBX.Game;
+    private _Runner:TBX.Runner;
     public constructor()
     {
-        this._Game = new Engineer.Game();
+        this._Game = new TBX.Game();
         this._Game.Name = "ScarCity";
-        this._Runner = new Engineer.Runner(this._Game, Engineer.DrawEngineType.ThreeJS);
-        this._Runner.SetResolution(new Engineer.Vertex(1920, 1080, 0), true);
-        let _Menu:any = new MainMenu(this._Runner, this._Game);
-        this._Game.AddScene(_Menu);
+        this._Runner = new TBX.Runner(this._Game, TBX.DrawEngineType.ThreeJS);
+        this._Runner.SetResolution(new TBX.Vertex(1920, 1080, 0), false);
+        this._Game.Attach(new Menu());
+        this._Game.Attach(new GameScene());
     }
     public Run() : void
     {
-        this._Runner.SwitchScene("Menu");
+        this._Runner.SwitchScene("Menu", false);
         this._Runner.Run();
     }
 }
