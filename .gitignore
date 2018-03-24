@@ -1,0 +1,4 @@
+/node_modules
+/tscompiled
+/build/scarcity.js
+package-lock.json
