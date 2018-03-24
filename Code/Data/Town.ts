@@ -49,7 +49,6 @@ class Town
     }
     private MouseMove(G:TBX.Game, Args:any) : void
     {
-        //console.log(Args.Location);
         let Loc = FieldTransform.FindField(Args.Location);
         console.log(Loc);
     }

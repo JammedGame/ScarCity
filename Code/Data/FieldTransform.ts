@@ -10,7 +10,13 @@ class FieldTransform
 {
     public static FindField(Location:TBX.Vertex) : TBX.Vertex
     {
-        for(let i = 0; i < FLOOR_SIZE; i++)
+        let Field = new TBX.Vertex(1,0);
+        let Coords:TBX.Vertex = this.FieldWorldCoords(Field);
+        if(this.Check(Location, Coords))
+        {
+            return Field;
+        }
+        /*for(let i = 0; i < FLOOR_SIZE; i++)
         {
             for(let j = 0; j < FLOOR_SIZE; j++)
             {
@@ -21,14 +27,17 @@ class FieldTransform
                     return Field;
                 }
             }
-        }
+        }*/
         return null;
     }
     public static Check(Location:TBX.Vertex, Field:TBX.Vertex) : boolean
     {
         let Distance:TBX.Vertex = new TBX.Vertex(Location.X - Field.X, Location.Y - Field.Y);
         Distance.Y *= 1.73;
-        return Math.abs(Distance.X) + Math.abs(Distance.Y) < TOWN_SIZE / FLOOR_SIZE;
+        let MaxSize:number = TOWN_SIZE / FLOOR_SIZE;
+        MaxSize /= 2;
+        //console.log(Math.abs(Distance.X) + Math.abs(Distance.Y));
+        return Math.abs(Distance.X) + Math.abs(Distance.Y) < MaxSize;
     }
     public static FieldWorldCoords(Field:TBX.Vertex) : TBX.Vertex
     {
