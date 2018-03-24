@@ -2,12 +2,23 @@ export { GameScene };
 
 import * as TBX from "engineer-js";
 
+import { Town } from "./../Data/Town";
+
 class GameScene extends TBX.Scene2D
 {
-    public constructor()
+    private _Town:Town;
+    public constructor(Old?:GameScene)
     {
-        super();
-        this.Init();
+        super(Old);
+        if(Old)
+        {
+            this._Town = Old._Town.Copy(this);
+        }
+        else
+        {
+            this._Town = new Town(null, this);
+            this.Init();
+        }
     }
     public Init(): void
     {
