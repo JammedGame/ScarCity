@@ -7,6 +7,7 @@ class Layout
     private _Size:TBX.Vertex;
     private _Fields:number[];
     public get Size():TBX.Vertex { return this._Size; }
+    public get Fields():number[] { return this._Fields; }
     public constructor(Old?:Layout, Size?:TBX.Vertex)
     {
         this._Fields = [];

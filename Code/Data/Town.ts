@@ -77,20 +77,15 @@ class Town
         let Loc = FieldTransform.FindField(Args.Location);
         if(Loc && this._Pointer)
         {
-            if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Loc)) this._Pointer.Paint = TBX.Color.Red;
-            else this._Pointer.Paint = TBX.Color.White;
-            this._Pointer.Modified = true;
-            let BuildLoc:TBX.Vertex = FieldTransform.FieldWorldCoords(Loc);
-            BuildLoc.X -= this._Pointer.Data["OffsetX"];
-            BuildLoc.Y -= this._Pointer.Data["OffsetY"];
-            BuildLoc.Z = 0.1 * (this._Current+1) + FieldTransform.FieldZPosition(Loc);
-            this._Pointer.Position = BuildLoc;
-            this._Pointer.Active = true;
+            if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Loc)) this._Pointer.Unavailable();
+            else this._Pointer.Available();
+            this._Pointer.SetLocation(Loc, this._Current);
+            this._Pointer.Toggle(true);
             this._Grid.Active = true;
         }
         else
         {
-            if(this._Pointer) this._Pointer.Active = false;
+            if(this._Pointer) this._Pointer.Toggle(false);
             this._Grid.Active = false;
         }
     }
@@ -107,11 +102,7 @@ class Town
         if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Location)) return;
         let NewBuilding:Building = this._Pointer.Copy();
         this._Floors[this._Current].Layout.Apply(NewBuilding.Structure, Location);
-        let BuildLoc:TBX.Vertex = FieldTransform.FieldWorldCoords(Location);
-        BuildLoc.X -= this._Pointer.Data["OffsetX"];
-        BuildLoc.Y -= this._Pointer.Data["OffsetY"];
-        BuildLoc.Z = 0.1 * (this._Current+1) + FieldTransform.FieldZPosition(Location);
-        NewBuilding.Position = BuildLoc;
+        NewBuilding.SetLocation(Location, this._Current);
         this._Floors[this._Current].Buildings.push(NewBuilding);
         this._Scene.Attach(NewBuilding);
         this._Scene.Remove(this._Pointer);

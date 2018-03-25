@@ -31,8 +31,7 @@ class BuildingsPool
         {
             let New = new Building(null, BuildingsList[i].Name);
             New.Size = new TBX.Vertex(BuildingsList[i].SizeX,BuildingsList[i].SizeY);
-            New.Data["OffsetX"] = BuildingsList[i].OffsetX;
-            New.Data["OffsetY"] = BuildingsList[i].OffsetY;
+            New.Offset = new TBX.Vertex(BuildingsList[i].OffsetX, BuildingsList[i].OffsetY);
             New.Structure.Create(new TBX.Vertex(BuildingsList[i].Structure.X, BuildingsList[i].Structure.Y), BuildingsList[i].Structure.Fields);
             New.Foundations.Create(new TBX.Vertex(BuildingsList[i].Foundations.X, BuildingsList[i].Foundations.Y), BuildingsList[i].Foundations.Fields);
             New.Init();

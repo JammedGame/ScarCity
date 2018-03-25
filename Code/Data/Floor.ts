@@ -33,10 +33,10 @@ class Floor
     }
     public Up() : void
     {
-        for(let i in this._Buildings) this._Buildings[i].Position.Y += 138;
+        for(let i in this._Buildings) this._Buildings[i].MoveDown();
     }
     public Down() : void
     {
-        for(let i in this._Buildings) this._Buildings[i].Position.Y -= 138;
+        for(let i in this._Buildings) this._Buildings[i].MoveUp();
     }
 }
