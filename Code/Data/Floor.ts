@@ -39,4 +39,8 @@ class Floor
     {
         for(let i in this._Buildings) this._Buildings[i].MoveUp();
     }
+    public Toggle(Toggled:boolean) : void
+    {
+        for(let i in this._Buildings) this._Buildings[i].Toggle(Toggled);
+    }
 }

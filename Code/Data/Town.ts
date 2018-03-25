@@ -18,6 +18,9 @@ class Town
     private _Grid:TBX.Tile;
     private _Up:TBX.Tile;
     private _Down:TBX.Tile;
+    private _Sky:TBX.Tile;
+    private _Stars:TBX.Tile;
+    private _Clouds:TBX.Tile;
     private _Floors:Floor[];
     private _Pointer:Building;
     public constructor(Old?:Town, Scene?:TBX.Scene2D)
@@ -41,8 +44,9 @@ class Town
     }
     private Init() : void
     {
+        this.InitBackground();
         this._Floors.push(new Floor(null, 0));
-        this._Base = TBX.SceneObjectUtil.CreateTile("Base", ["/Resources/Textures/Town/Base.png"], new TBX.Vertex(960, TOWN_CENTER), new TBX.Vertex(1000,1000));
+        this._Base = TBX.SceneObjectUtil.CreateTile("Base", ["/Resources/Textures/Town/Base.png"], new TBX.Vertex(960, TOWN_CENTER+380), new TBX.Vertex(1000,2000));
         this._Grid = TBX.SceneObjectUtil.CreateTile("Grid", ["/Resources/Textures/Town/Grid.png"], new TBX.Vertex(960, TOWN_CENTER), new TBX.Vertex(1000,1000));
         this._Grid.Active = false;
         this._Scene.Attach(this._Base);
@@ -50,6 +54,11 @@ class Town
         this._Scene.Events.Click.push(this.MouseClick.bind(this));
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
         this.InitMovers();
+    }
+    private InitBackground() : void
+    {
+        this._Sky = TBX.SceneObjectUtil.CreateTile("Sky", ["/Resources/Textures/Town/Sky.png"], new TBX.Vertex(960, TOWN_CENTER - 1624), new TBX.Vertex(1920,4320));
+        this._Scene.Attach(this._Sky);
     }
     private InitMovers() : void
     {
@@ -112,6 +121,7 @@ class Town
     }
     private UpClick() : void
     {
+        this._Floors[this._Current+1].Toggle(true);
         this._Current++;
         for(let i in this._Floors) this._Floors[i].Up();
         this._Base.Position.Y += 138;
@@ -121,6 +131,7 @@ class Town
     {
         this._Current--;
         for(let i in this._Floors) this._Floors[i].Down();
+        this._Floors[this._Current+1].Toggle(false);
         this._Base.Position.Y -= 138;
         this.UpdateMovers();
     }
