@@ -6,6 +6,7 @@ import { Floor } from "./Floor";
 import { Layout } from "./Layout/Layout";
 import { Building } from "./Building/Building";
 import { FieldTransform } from "./FieldTransform";
+import { GameScene } from "./../GameScene/GameScene";
 
 const TOWN_SIZE = 1000;
 const TOWN_CENTER = 650;
@@ -67,8 +68,8 @@ class Town
     }
     private InitMovers() : void
     {
-        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(1700, 1000), new TBX.Vertex(80,100,1));
-        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(1800, 1000), new TBX.Vertex(80,100,1));
+        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(1720, 1000), new TBX.Vertex(80,100,1));
+        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(1820, 1000), new TBX.Vertex(80,100,1));
         this._Up.Events.Click.push(this.UpClick.bind(this));
         this._Down.Events.Click.push(this.DownClick.bind(this));
         this._Scene.Attach(this._Up);
@@ -125,6 +126,8 @@ class Town
             return;
         }
         let NewBuilding:Building = this._Pointer.Copy();
+        (<GameScene>this._Scene).Resources.Pay(NewBuilding.Price);
+        (<GameScene>this._Scene).UpdateRes();
         this._Floors[this._Current].Layout.Apply(NewBuilding.Structure, Location);
         NewBuilding.SetLocation(Location, this._Current);
         this._Floors[this._Current].Buildings.push(NewBuilding);

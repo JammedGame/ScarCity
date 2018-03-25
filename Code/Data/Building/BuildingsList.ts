@@ -12,7 +12,7 @@ let BuildingsList =
         Price:
         [
             {
-                Name: "stone",
+                Name: "Stone",
                 Amount: 1
             }
         ],
@@ -29,7 +29,7 @@ let BuildingsList =
         Price:
         [
             {
-                Name: "stone",
+                Name: "Stone",
                 Amount: 2
             }
         ],
@@ -131,7 +131,7 @@ let BuildingsList =
         Price:
         [
             {
-                Name: "wood",
+                Name: "Wood",
                 Amount: 2
             }
         ],
@@ -148,7 +148,7 @@ let BuildingsList =
         Price:
         [
             {
-                Name: "wood",
+                Name: "Wood",
                 Amount: 3
             }
         ],
