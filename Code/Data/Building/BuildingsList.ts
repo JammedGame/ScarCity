@@ -82,7 +82,7 @@ let BuildingsList =
         Name: "GlassworksII",
         Income:
         {
-            Name: "GLass",
+            Name: "Glass",
             Income: 1
         },
         Price:
