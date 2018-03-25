@@ -69,6 +69,7 @@ class Building extends TBX.Tile
                     ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_"+i+"_"+j+".png"]);
                     Satelite.Size = new TBX.Vertex(SATELITE_SIZE,SATELITE_SIZE,1);
                     Satelite.Data["Offset"] = new TBX.Vertex(i,j);
+                    Satelite.Position = new TBX.Vertex(-1000,-1000);
                     this._Satelites.push(Satelite);
                 }
             }
@@ -101,7 +102,7 @@ class Building extends TBX.Tile
             let SLocation:TBX.Vertex = Location.Copy().Add(Satelite.Data["Offset"]);
             if(SLocation.X > 3 || SLocation.Y > 3)
             {
-                Satelite.Position = new TBX.Vertex(-1000,0);
+                Satelite.Position = new TBX.Vertex(-1000,-1000);
                 continue;
             }
             let Loc:TBX.Vertex = FieldTransform.FieldWorldCoords(SLocation);

@@ -68,8 +68,8 @@ class Town
     }
     private InitMovers() : void
     {
-        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(1720, 1000), new TBX.Vertex(80,100,1));
-        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(1820, 1000), new TBX.Vertex(80,100,1));
+        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(1720, 1000, 1), new TBX.Vertex(80,100,1));
+        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(1820, 1000, 1), new TBX.Vertex(80,100,1));
         this._Up.Events.Click.push(this.UpClick.bind(this));
         this._Down.Events.Click.push(this.DownClick.bind(this));
         this._Scene.Attach(this._Up);
