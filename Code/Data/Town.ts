@@ -78,6 +78,11 @@ class Town
     }
     public SetPointer(Selected:Building) : void
     {
+        if(this._Pointer)
+        {
+            this._Scene.Remove(this._Pointer);
+            this._Pointer = null;
+        }
         this._Pointer = Selected.Copy();
         this._Pointer.Position.Z = 1;
         this._Pointer.Data["OffsetX"] = Selected.Data["OffsetX"];
