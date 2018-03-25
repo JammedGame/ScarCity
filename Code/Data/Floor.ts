@@ -43,4 +43,8 @@ class Floor
     {
         for(let i in this._Buildings) this._Buildings[i].Toggle(Toggled);
     }
+    public SetShade(Color:TBX.Color) : void
+    {
+        for(let i in this._Buildings) this._Buildings[i].SetShade(Color);
+    }
 }

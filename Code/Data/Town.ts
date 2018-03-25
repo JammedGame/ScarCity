@@ -174,5 +174,17 @@ class Town
     {
         this._Down.Active = this._Current > 0;
         this._Up.Active = this._Current + 1 < this._Floors.length;
+        this.ShadeFloors();
+    }
+    private ShadeFloors() : void
+    {
+        for(let i = 0; i < this._Floors.length; i++)
+        {
+            if(i == this._Current) this._Floors[i].SetShade(TBX.Color.White);
+            else if(Math.abs(this._Current - i) == 1) this._Floors[i].SetShade(TBX.Color.FromString("#EEEEEE"));
+            else if(Math.abs(this._Current - i) == 2) this._Floors[i].SetShade(TBX.Color.FromString("#DDDDDD"));
+            else if(Math.abs(this._Current - i) == 3) this._Floors[i].SetShade(TBX.Color.FromString("#CCCCCC"));
+            else this._Floors[i].SetShade(TBX.Color.FromString("#BBBBBB"));
+        }
     }
 }
