@@ -38,9 +38,10 @@ class Layout
             }
         }
     }
-    public Invert() : void
+    public Invert() : Layout
     {
         for(let i in this._Fields) this._Fields[i] = (this._Fields[i] == 1) ? 0 : 1;
+        return this;
     }
     public Create(Size:TBX.Vertex, Fields:number[]) : void
     {

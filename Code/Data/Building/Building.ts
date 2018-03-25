@@ -94,7 +94,7 @@ class Building extends TBX.Tile
             let SLocation:TBX.Vertex = Location.Copy().Add(Satelite.Data["Offset"]);
             if(SLocation.X > 3 || SLocation.Y > 3)
             {
-                Satelite.Position = new TBX.Vertex(-200,0);
+                Satelite.Position = new TBX.Vertex(-1000,0);
                 continue;
             }
             let Loc:TBX.Vertex = FieldTransform.FieldWorldCoords(SLocation);

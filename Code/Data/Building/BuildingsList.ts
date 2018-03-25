@@ -27,4 +27,9 @@ let BuildingsList =
         Structure: { X:1, Y:2, Fields:[1,1] },
         Foundations: { X:1, Y:2, Fields:[1,1] }
     },
+    {
+        Name: "Pool",
+        Structure: { X:1, Y:1, Fields:[1] },
+        Foundations: { X:1, Y:1, Fields:[1] }
+    },
 ]
