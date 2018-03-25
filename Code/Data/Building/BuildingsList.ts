@@ -3,6 +3,63 @@ export { BuildingsList }
 let BuildingsList =
 [
     {
+        Name: "GoldsmithIV",
+        Income:
+        {
+            Name: "Stone",
+            Income: 2
+        },
+        Price:
+        [
+            {
+                Name: "Stone",
+                Amount: 1
+            }
+        ],
+        Structure: { X:3, Y:2, Fields:[1,1,1,0,1,1] },
+        Foundations:[
+            { X:3, Y:2, Fields:[1,1,1,1,0,0] }
+        ]
+    },
+    {
+        Name: "MetalworksIII",
+        Income:
+        {
+            Name: "Stone",
+            Income: 2
+        },
+        Price:
+        [
+            {
+                Name: "Stone",
+                Amount: 1
+            }
+        ],
+        Structure: { X:3, Y:2, Fields:[0,0,1,1,1,1] },
+        Foundations:[
+             { X:3, Y:2, Fields:[0,0,1,1,1,0] }
+        ]
+    },
+    {
+        Name: "MetalworksII",
+        Income:
+        {
+            Name: "Stone",
+            Income: 2
+        },
+        Price:
+        [
+            {
+                Name: "Stone",
+                Amount: 1
+            }
+        ],
+        Structure: { X:2, Y:2, Fields:[0,1,1,1] },
+        Foundations: [
+            { X:2, Y:2, Fields:[0,1,1,0] }
+        ]
+    },
+    {
         Name: "GlassworksII",
         Income:
         {
@@ -17,11 +74,11 @@ let BuildingsList =
             }
         ],
         Structure: { X:3, Y:1, Fields:[1,1,1] },
-        Foundations: 
-        [
+        Foundations: [
             { X:3, Y:1, Fields:[0,1,0] }
         ]
-    },{
+    },
+    {
         Name: "GlassworksIII",
         Income:
         {
