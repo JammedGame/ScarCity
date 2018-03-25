@@ -94,7 +94,7 @@ class Town
             {
                 this._Pointer.Unavailable();
             }
-            else if(this._Current != 0 && !this._Floors[this._Current-1].Layout.Copy().Invert().ApplyAble(this._Pointer.Foundations, Loc))
+            else if(this._Current != 0 && !this._Floors[this._Current-1].Layout.Copy().Invert().ApplyAbleArray(this._Pointer.Foundations, Loc))
             {
                 this._Pointer.Unavailable();
             }
@@ -121,7 +121,7 @@ class Town
     private Build(Location:TBX.Vertex) : void
     {
         if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Location)) return;
-        if(this._Current != 0 && !this._Floors[this._Current-1].Layout.Copy().Invert().ApplyAble(this._Pointer.Foundations, Location))
+        if(this._Current != 0 && !this._Floors[this._Current-1].Layout.Copy().Invert().ApplyAbleArray(this._Pointer.Foundations, Location))
         {
             return;
         }

@@ -2,6 +2,7 @@ export { BuildingsPool }
 
 import * as TBX from "engineer-js";
 
+import { Layout } from "./../Layout/Layout";
 import { Building } from "./Building";
 import { BuildingsList } from "./BuildingsList";
 import { Resource } from "./../Resource/Resource";
@@ -34,7 +35,13 @@ class BuildingsPool
         {
             let New = new Building(null, BuildingsList[i].Name);
             New.Structure.Create(new TBX.Vertex(BuildingsList[i].Structure.X, BuildingsList[i].Structure.Y), BuildingsList[i].Structure.Fields);
-            New.Foundations.Create(new TBX.Vertex(BuildingsList[i].Foundations.X, BuildingsList[i].Foundations.Y), BuildingsList[i].Foundations.Fields);
+            for(let j in BuildingsList[i].Foundations)
+            {
+                let Fond = BuildingsList[i].Foundations[j];
+                let ResFon = new Layout(null);
+                ResFon.Create(new TBX.Vertex(Fond.X, Fond.Y), Fond.Fields);
+                New.Foundations.push(ResFon);
+            }
             New.Init();
             New.Income = new Resource(null, BuildingsList[i].Income.Name, BuildingsList[i].Income.Income);
             for(let j in BuildingsList[i].Price)

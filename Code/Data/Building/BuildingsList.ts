@@ -17,7 +17,11 @@ let BuildingsList =
             }
         ],
         Structure: { X:2, Y:1, Fields:[1,1] },
-        Foundations: { X:2, Y:1, Fields:[1,1] }
+        Foundations:
+        [
+            { X:2, Y:1, Fields:[1,1] },
+            { X:2, Y:1, Fields:[0,1] }
+        ]
     },
     {
         Name: "StonemasonII",
@@ -34,7 +38,10 @@ let BuildingsList =
             }
         ],
         Structure: { X:2, Y:2, Fields:[1,1,1,0] },
-        Foundations: { X:2, Y:2, Fields:[0,1,0,0] }
+        Foundations:
+        [
+            { X:2, Y:2, Fields:[0,1,0,0] }
+        ]
     },
     {
         Name: "StonemasonIII",
@@ -51,7 +58,10 @@ let BuildingsList =
             }
         ],
         Structure: { X:3, Y:2, Fields:[0,1,1,1,1,0] },
-        Foundations: { X:3, Y:2, Fields:[0,1,1,1,0,0] }
+        Foundations:
+        [
+            { X:3, Y:2, Fields:[0,1,1,1,0,0] }
+        ]
     },
     {
         Name: "SandpitI",
@@ -68,7 +78,10 @@ let BuildingsList =
             }
         ],
         Structure: { X:1, Y:2, Fields:[1,1] },
-        Foundations: { X:1, Y:2, Fields:[1,1] }
+        Foundations:
+        [
+            { X:1, Y:2, Fields:[1,1] }
+        ]
     },
     {
         Name: "SandpitII",
@@ -85,7 +98,10 @@ let BuildingsList =
             }
         ],
         Structure: { X:2, Y:2, Fields:[1,1,0,1] },
-        Foundations: { X:2, Y:2, Fields:[1,0,0,1] }
+        Foundations:
+        [
+            { X:2, Y:2, Fields:[1,0,0,1] }
+        ]
     },
     {
         Name: "SandpitIII",
@@ -102,7 +118,10 @@ let BuildingsList =
             }
         ],
         Structure: { X:2, Y:2, Fields:[1,1,1,1] },
-        Foundations: { X:2, Y:2, Fields:[1,0,0,1] }
+        Foundations:
+        [
+            { X:2, Y:2, Fields:[1,0,0,1] }
+        ]
     },
     {
         Name: "SawmillI",
@@ -119,7 +138,10 @@ let BuildingsList =
             }
         ],
         Structure: { X:1, Y:2, Fields:[1,1] },
-        Foundations: { X:1, Y:2, Fields:[1,1] }
+        Foundations:
+        [
+            { X:1, Y:2, Fields:[1,1] }
+        ]
     },
     {
         Name: "SawmillII",
@@ -136,7 +158,10 @@ let BuildingsList =
             }
         ],
         Structure: { X:1, Y:3, Fields:[1,1,1] },
-        Foundations: { X:1, Y:3, Fields:[0,1,0]  }
+        Foundations:
+        [
+            { X:1, Y:3, Fields:[0,1,0]  }
+        ]
     },
     {
         Name: "SawmillIII",
@@ -153,6 +178,9 @@ let BuildingsList =
             }
         ],
         Structure: { X:2, Y:3, Fields:[0,1,1,1,0,1] },
-        Foundations: { X:2, Y:3, Fields:[0,1,1,1,0,0]  }
+        Foundations:
+        [
+            { X:2, Y:3, Fields:[0,1,1,1,0,0]  }
+        ]
     }
 ]

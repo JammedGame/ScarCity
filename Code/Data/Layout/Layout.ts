@@ -48,6 +48,14 @@ class Layout
         this._Size = Size;
         this._Fields = Fields;
     }
+    public ApplyAbleArray(Builds:Layout[], Position:TBX.Vertex) : boolean
+    {
+        for(let i in Builds)
+        {
+            if(this.ApplyAble(Builds[i], Position)) return true;
+        }
+        return false;
+    }
     public ApplyAble(Build:Layout, Position:TBX.Vertex) : boolean
     {
         if(Position.X < 0 || Position.Y < 0) return false;

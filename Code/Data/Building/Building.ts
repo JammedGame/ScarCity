@@ -16,7 +16,7 @@ class Building extends TBX.Tile
     private _Income:Resource;
     private _Price:ResourceSet;
     private _Structure:Layout;
-    private _Foundations:Layout;
+    private _Foundations:Layout[];
     private _Satelites:TBX.Tile[];
     public get BID():string { return this._BID; }
     public get Income():Resource { return this._Income; }
@@ -24,10 +24,11 @@ class Building extends TBX.Tile
     public get Price():ResourceSet { return this._Price; }
     public set Price(value:ResourceSet) { this._Price = value; }
     public get Structure():Layout { return this._Structure; }
-    public get Foundations():Layout { return this._Foundations; }
+    public get Foundations():Layout[] { return this._Foundations; }
     public constructor(Old?:Building, BID?:string)
     {
         super(Old);
+        this._Foundations = [];
         this._Satelites = [];
         if(Old)
         {
@@ -35,7 +36,7 @@ class Building extends TBX.Tile
             this._Income = Old._Income.Copy();
             this._Price = Old._Price.Copy();
             this._Structure = Old._Structure.Copy();
-            this._Foundations = Old._Foundations.Copy();
+            for(let i in Old._Foundations) this._Foundations.push(Old._Foundations[i].Copy());
             for(let i in Old._Satelites)
             {
                 this._Satelites.push(Old._Satelites[i].Copy());
@@ -49,7 +50,6 @@ class Building extends TBX.Tile
             this._Income = new Resource();
             this._Price = new ResourceSet();
             this._Structure = new Layout(null, new TBX.Vertex(2,2));
-            this._Foundations = new Layout(null, new TBX.Vertex(2,2));
             this.Active = false;
         }
     }
@@ -86,7 +86,7 @@ class Building extends TBX.Tile
     } 
     public BuildAble(Floor:Layout, Position:TBX.Vertex) : boolean
     {
-        return Floor.ApplyAble(this._Foundations, Position);
+        return Floor.ApplyAbleArray(this._Foundations, Position);
     }
     public Build(Floor:Layout, Position:TBX.Vertex) : void
     {
