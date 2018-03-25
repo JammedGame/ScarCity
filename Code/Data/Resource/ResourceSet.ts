@@ -38,7 +38,7 @@ class ResourceSet
     {
         this.Add(new Resource(null, "Wood", 0, 10));
         this.Add(new Resource(null, "Stone", 0, 10));
-        this.Add(new Resource(null, "Sand", 0, 0));
+        this.Add(new Resource(null, "Sand", 0, 10));
         this.Add(new Resource(null, "Metal", 0, 0));
         this.Add(new Resource(null, "Concrete", 0, 0));
         this.Add(new Resource(null, "Glass", 0, 0));
