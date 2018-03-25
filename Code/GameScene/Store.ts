@@ -7,11 +7,17 @@ import { StoreItem } from "./StoreItem";
 import { Building } from "./../Data/Building/Building";
 import { BuildingsPool } from "./../Data/Building/BuildingsPool";
 
+const INIT_OFFSET = 180;
+const ITEM_OFFSET = 180;
+const HORIZONTAL_POSITION = 150;
+
 class Store
 {
     private _Index:number;
     private _Scene:GameScene;
     private _Pool:BuildingsPool;
+    private _Up:TBX.Tile;
+    private _Down:TBX.Tile;
     private _Items:StoreItem[];
     public constructor(Old?:Store, Scene?:GameScene)
     {
@@ -35,6 +41,8 @@ class Store
     }
     private Init()
     {
+        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(HORIZONTAL_POSITION, 100), new TBX.Vertex(60,85,1));
+        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(HORIZONTAL_POSITION, 980), new TBX.Vertex(60,85,1));
         for(let i = 0; i < this._Pool.Pool.length; i ++)
         {
             let Item:StoreItem = new StoreItem(null, this._Pool.Pool[i]);
@@ -49,7 +57,7 @@ class Store
         {
             let Item:StoreItem = this._Items[i];
             Item.Active = (i - this._Index) >= 0 && (i - this._Index) < 5;
-            Item.Position = new TBX.Vertex(150, 200 * (1 + i - this._Index));
+            Item.Position = new TBX.Vertex(HORIZONTAL_POSITION, INIT_OFFSET + ITEM_OFFSET  * (i - this._Index));
             Item.OnSelect = this.OnSelect.bind(this);
         }
     }

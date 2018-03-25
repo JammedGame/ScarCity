@@ -77,27 +77,27 @@ class FieldTransform
     }
     public static FieldZPosition(Field:TBX.Vertex) : number
     {
-        if(Field.X == 3 && Field.Y == 0) return 0;
+        if(Field.X == 3 && Field.Y == 0) return 0.01;
 
-        if(Field.X == 2 && Field.Y == 0) return 0.01;
-        if(Field.X == 3 && Field.Y == 1) return 0.01;
+        if(Field.X == 2 && Field.Y == 0) return 0.02;
+        if(Field.X == 3 && Field.Y == 1) return 0.02;
 
-        if(Field.X == 1 && Field.Y == 0) return 0.02;
-        if(Field.X == 2 && Field.Y == 1) return 0.02;
-        if(Field.X == 3 && Field.Y == 2) return 0.02;
+        if(Field.X == 1 && Field.Y == 0) return 0.03;
+        if(Field.X == 2 && Field.Y == 1) return 0.03;
+        if(Field.X == 3 && Field.Y == 2) return 0.03;
 
-        if(Field.X == 0 && Field.Y == 0) return 0.03;
-        if(Field.X == 1 && Field.Y == 1) return 0.03;
-        if(Field.X == 2 && Field.Y == 2) return 0.03;
-        if(Field.X == 3 && Field.Y == 3) return 0.03;
+        if(Field.X == 0 && Field.Y == 0) return 0.04;
+        if(Field.X == 1 && Field.Y == 1) return 0.04;
+        if(Field.X == 2 && Field.Y == 2) return 0.04;
+        if(Field.X == 3 && Field.Y == 3) return 0.04;
 
-        if(Field.X == 0 && Field.Y == 1) return 0.04;
-        if(Field.X == 1 && Field.Y == 2) return 0.04;
-        if(Field.X == 2 && Field.Y == 3) return 0.04;
+        if(Field.X == 0 && Field.Y == 1) return 0.05;
+        if(Field.X == 1 && Field.Y == 2) return 0.05;
+        if(Field.X == 2 && Field.Y == 3) return 0.05;
 
-        if(Field.X == 0 && Field.Y == 2) return 0.05;
-        if(Field.X == 1 && Field.Y == 3) return 0.05;
+        if(Field.X == 0 && Field.Y == 2) return 0.06;
+        if(Field.X == 1 && Field.Y == 3) return 0.06;
 
-        if(Field.X == 0 && Field.Y == 3) return 0.06;
+        if(Field.X == 0 && Field.Y == 3) return 0.07;
     }
 }

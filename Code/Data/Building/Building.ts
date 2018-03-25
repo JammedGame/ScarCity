@@ -6,20 +6,20 @@ import { Layout } from "./../Layout/Layout";
 import { ResourceSet } from "./../Resource/ResourceSet";
 import { FieldTransform } from "./../FieldTransform";
 
+const VERTICAL_OFFSET = 72;
+const SATELITE_SIZE = 280;
+
 class Building extends TBX.Tile
 {
     private _BID:string;
     private _Price:ResourceSet;
     private _Structure:Layout;
     private _Foundations:Layout;
-    private _Offset:TBX.Vertex;
     private _Satelites:TBX.Tile[];
     public get BID():string { return this._BID; }
     public get Price():ResourceSet { return this._Price; }
     public get Structure():Layout { return this._Structure; }
     public get Foundations():Layout { return this._Foundations; }
-    public get Offset():TBX.Vertex { return this._Offset; }
-    public set Offset(value:TBX.Vertex) { this._Offset = value; }
     public constructor(Old?:Building, BID?:string)
     {
         super(Old);
@@ -28,7 +28,6 @@ class Building extends TBX.Tile
         {
             this._BID = Old._BID;
             this._Price = Old._Price.Copy();
-            this._Offset = Old._Offset.Copy();
             this._Structure = Old._Structure.Copy();
             this._Foundations = Old._Foundations.Copy();
             for(let i in Old._Satelites)
@@ -61,7 +60,7 @@ class Building extends TBX.Tile
                 {
                     let Satelite:TBX.Tile = TBX.SceneObjectUtil.CreateTile(this._BID+"_"+i+"_"+j,
                     ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_"+i+"_"+j+".png"]);
-                    Satelite.Size = this.Size.Copy();
+                    Satelite.Size = new TBX.Vertex(SATELITE_SIZE,SATELITE_SIZE,1);
                     Satelite.Data["Offset"] = new TBX.Vertex(i,j);
                     this._Satelites.push(Satelite);
                 }
@@ -99,8 +98,7 @@ class Building extends TBX.Tile
                 continue;
             }
             let Loc:TBX.Vertex = FieldTransform.FieldWorldCoords(SLocation);
-            Loc.X -= this._Offset.X;
-            Loc.Y -= this._Offset.Y;
+            Loc.Y -= VERTICAL_OFFSET;
             Loc.Z = 0.1 * (Floor+1) + FieldTransform.FieldZPosition(SLocation);
             Satelite.Position = Loc;
         }
