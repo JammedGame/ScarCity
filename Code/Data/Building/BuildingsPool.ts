@@ -5,6 +5,7 @@ import * as TBX from "engineer-js";
 import { Building } from "./Building";
 import { BuildingsList } from "./BuildingsList";
 import { Resource } from "./../Resource/Resource";
+import { ResourceArt } from "./../Resource/ResourceArt";
 
 class BuildingsPool
 {
@@ -28,6 +29,7 @@ class BuildingsPool
     }
     private Init() : void
     {
+        let RA = new ResourceArt();
         for(let i in BuildingsList)
         {
             let New = new Building(null, BuildingsList[i].Name);

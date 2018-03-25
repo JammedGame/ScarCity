@@ -6,6 +6,7 @@ class ResourceSet
 {
     private _Hash:any;
     private _Resources:Resource[];
+    public get Bundle():Resource[] { return this._Resources; }
     public constructor(Old?:ResourceSet)
     {
         this._Hash = {};

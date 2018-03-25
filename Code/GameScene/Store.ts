@@ -19,6 +19,7 @@ class Store
     private _Up:TBX.Tile;
     private _Down:TBX.Tile;
     private _Items:StoreItem[];
+    private _LastPicked:StoreItem;
     public constructor(Old?:Store, Scene?:GameScene)
     {
         this._Items = [];
@@ -44,6 +45,7 @@ class Store
         let Overlay:TBX.Tile = TBX.SceneObjectUtil.CreateTile("Overlay", null, new TBX.Vertex(HORIZONTAL_POSITION, 540), new TBX.Vertex(250,1920,1));
         Overlay.Paint = TBX.Color.FromRGBA(50,50,50,50);
         this._Scene.Attach(Overlay);
+        this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
         this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(HORIZONTAL_POSITION, 60), new TBX.Vertex(60,85,1));
         this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(HORIZONTAL_POSITION, 1020), new TBX.Vertex(60,85,1));
         this._Up.Events.Click.push(this.UpClick.bind(this));
@@ -65,8 +67,8 @@ class Store
         for(let i = 0; i < this._Items.length; i++)
         {
             let Item:StoreItem = this._Items[i];
-            Item.Active = (i - this._Index) >= 0 && (i - this._Index) < 5;
-            Item.Position = new TBX.Vertex(HORIZONTAL_POSITION, INIT_OFFSET + ITEM_OFFSET  * (i - this._Index));
+            Item.SetActive((i - this._Index) >= 0 && (i - this._Index) < 5);
+            Item.SetPosition(new TBX.Vertex(HORIZONTAL_POSITION, INIT_OFFSET + ITEM_OFFSET  * (i - this._Index)));
             Item.OnSelect = this.OnSelect.bind(this);
         }
     }
@@ -88,6 +90,16 @@ class Store
         {
             this._Index++;
             this.Positionate();
+        }
+    }
+    private MouseMove(G:TBX.Game, Args:any) : void
+    {
+        if(this._LastPicked) this._LastPicked.Restore();
+        let Picked:StoreItem = <StoreItem>TBX.Runner.Current.PickSceneObject(Args.Location);
+        this._LastPicked = Picked;
+        if(Picked)
+        {
+            Picked.Darken();
         }
     }
 }
