@@ -4,6 +4,7 @@ import { Resource } from "./Resource";
 
 class ResourceSet
 {
+    public static Single:ResourceSet;
     private _Hash:any;
     private _Resources:Resource[];
     public get Bundle():Resource[] { return this._Resources; }
@@ -44,6 +45,7 @@ class ResourceSet
         this.Add(new Resource(null, "Marble", 0, 0));
         this.Add(new Resource(null, "Gold", 0, 0));
         this.Add(new Resource(null, "Jewel", 0, 0));
+        ResourceSet.Single = this;
     }
     public Get(Name:string) : Resource
     {

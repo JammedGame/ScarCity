@@ -4,6 +4,7 @@ import * as TBX from "engineer-js";
 
 import { Building } from "./../Data/Building/Building";
 import { Resource } from "./../Data/Resource/Resource";
+import { ResourceSet } from "./../Data/Resource/ResourceSet";
 import { ResourceArt } from "./../Data/Resource/ResourceArt";
 
 const ICON_SIZE = 150;
@@ -132,6 +133,19 @@ class StoreItem extends TBX.Tile
         {
             this._PriceTags[i].Active = true;
             this._PriceIcons[i].Active = true;
+            let TItem = this._Building.Price.Bundle[i];
+            if(ResourceSet.Single.Get(TItem.Name).Amount < TItem.Amount)
+            {
+                this._PriceTags[i].ForeColor = TBX.Color.Red;
+                this._PriceIcons[i].Paint = TBX.Color.Red;
+                this._PriceIcons[i].Modified = true;
+            }
+            else
+            {
+                this._PriceTags[i].ForeColor = TBX.Color.White;
+                this._PriceIcons[i].Paint = TBX.Color.White;
+                this._PriceIcons[i].Modified = true;
+            }
         }
     }
     public Restore() : void
