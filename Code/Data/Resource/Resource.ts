@@ -8,7 +8,7 @@ class Resource
     public get Name():string { return this._Name; }
     public get Amount():number { return this._Amount; }
     public get Income():number { return this._Income; }
-    public constructor(Old?:Resource, Name?:string, Income?:number)
+    public constructor(Old?:Resource, Name?:string, Income?:number, Amount?:number)
     {
         if(Old)
         {
@@ -20,7 +20,8 @@ class Resource
         {
             if(Name) this._Name = Name;
             else this._Name = "";
-            this._Amount = 0;
+            if(Amount) this._Amount = Amount;
+            else this._Amount = 0;
             if(Income) this._Income = Income;
             else this._Income = 1;
         }

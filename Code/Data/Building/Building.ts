@@ -3,6 +3,7 @@ export { Building }
 import * as TBX from "engineer-js";
 
 import { Layout } from "./../Layout/Layout";
+import { Resource } from "./../Resource/Resource";
 import { ResourceSet } from "./../Resource/ResourceSet";
 import { FieldTransform } from "./../FieldTransform";
 
@@ -12,12 +13,16 @@ const SATELITE_SIZE = 280;
 class Building extends TBX.Tile
 {
     private _BID:string;
+    private _Income:Resource;
     private _Price:ResourceSet;
     private _Structure:Layout;
     private _Foundations:Layout;
     private _Satelites:TBX.Tile[];
     public get BID():string { return this._BID; }
+    public get Income():Resource { return this._Income; }
+    public set Income(value:Resource) { this._Income = value; }
     public get Price():ResourceSet { return this._Price; }
+    public set Price(value:ResourceSet) { this._Price = value; }
     public get Structure():Layout { return this._Structure; }
     public get Foundations():Layout { return this._Foundations; }
     public constructor(Old?:Building, BID?:string)
@@ -27,6 +32,7 @@ class Building extends TBX.Tile
         if(Old)
         {
             this._BID = Old._BID;
+            this._Income = Old._Income.Copy();
             this._Price = Old._Price.Copy();
             this._Structure = Old._Structure.Copy();
             this._Foundations = Old._Foundations.Copy();
@@ -40,6 +46,7 @@ class Building extends TBX.Tile
         {
             if(BID) this._BID = BID;
             else this._BID = "";
+            this._Income = new Resource();
             this._Price = new ResourceSet();
             this._Structure = new Layout(null, new TBX.Vertex(2,2));
             this._Foundations = new Layout(null, new TBX.Vertex(2,2));

@@ -100,7 +100,7 @@ class Town
             else this._Pointer.Available();
             this._Pointer.SetLocation(Loc, this._Current);
             this._Pointer.Toggle(true);
-            this._Grid.Position.Z = 0.1 * this._Current;
+            this._Grid.Position.Z = 0.1 * (this._Current+1);
             this._Grid.Active = true;
         }
         else
