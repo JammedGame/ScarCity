@@ -144,4 +144,12 @@ class Building extends TBX.Tile
             this._Satelites[i].Position.Y += 138;
         }
     }
+    public SetShade(Color:TBX.Color) : void
+    {
+        for(let i in this._Satelites)
+        {
+            this._Satelites[i].Paint = Color;
+            this._Satelites[i].Modified = true;
+        }
+    }
 }
