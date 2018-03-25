@@ -7,6 +7,7 @@ class Resource
     private _Income:number;
     public get Name():string { return this._Name; }
     public get Amount():number { return this._Amount; }
+    public set Amount(value:number) { this._Amount = value; }
     public get Income():number { return this._Income; }
     public constructor(Old?:Resource, Name?:string, Income?:number, Amount?:number)
     {
@@ -32,7 +33,7 @@ class Resource
     }
     public PayAble(Order:Resource) : boolean
     {
-        return this._Amount > Order._Amount;
+        return this._Amount >= Order._Amount;
     }
     public Pay(Order:Resource) : void
     {

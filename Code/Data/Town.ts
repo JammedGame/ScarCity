@@ -127,6 +127,7 @@ class Town
         }
         let NewBuilding:Building = this._Pointer.Copy();
         (<GameScene>this._Scene).Resources.Pay(NewBuilding.Price);
+        (<GameScene>this._Scene).Resources.Receive(NewBuilding.Income);
         (<GameScene>this._Scene).UpdateRes();
         this._Floors[this._Current].Layout.Apply(NewBuilding.Structure, Location);
         NewBuilding.SetLocation(Location, this._Current);

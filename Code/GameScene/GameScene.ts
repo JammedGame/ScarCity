@@ -37,6 +37,7 @@ class GameScene extends TBX.Scene2D
     }
     public SetSelection(Selected:any) : void
     {
+        if(!this._Resource.Set.PayAble(Selected.Price)) return;
         this._Town.SetPointer(Selected);
     }
     private KeyPress(G: any, Args: any): void

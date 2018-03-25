@@ -67,4 +67,8 @@ class ResourceSet
             Current.Pay(Order._Resources[i]);
         }
     }
+    public Receive(Income:Resource) : void
+    {
+        this.Get(Income.Name).Amount += Income.Income;
+    }
 }
