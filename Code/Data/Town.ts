@@ -2,6 +2,7 @@ export { Town }
 
 import * as TBX from "engineer-js";
 
+import { Floor } from "./Floor";
 import { Layout } from "./Layout/Layout";
 import { Building } from "./Building/Building";
 import { FieldTransform } from "./FieldTransform";
@@ -15,19 +16,16 @@ class Town
     private _Scene:TBX.Scene2D;
     private _Base:TBX.Tile;
     private _Grid:TBX.Tile;
-    private _Floors:Layout[];
+    private _Floors:Floor[];
     private _Pointer:Building;
-    private _Buildings:Building[];
     public constructor(Old?:Town, Scene?:TBX.Scene2D)
     {
         this._Floors = [];
-        this._Buildings = [];
         if(Scene) this._Scene = Scene;
         if(Old)
         {
             this._Current = Old._Current;
             for(let i in this._Floors) this._Floors.push(Old._Floors[i].Copy());
-            for(let i in this._Buildings) this._Buildings.push(Old._Buildings[i].Copy());
         }
         else
         {
@@ -41,7 +39,7 @@ class Town
     }
     private Init() : void
     {
-        this._Floors.push(new Layout(null, new TBX.Vertex(4,4)));
+        this._Floors.push(new Floor(null, 0));
         this._Base = TBX.SceneObjectUtil.CreateTile("Base", ["/Resources/Textures/Town/Base.png"], new TBX.Vertex(960, TOWN_CENTER), new TBX.Vertex(1000,1000));
         this._Base.Data["Pickable"] = true;
         this._Grid = TBX.SceneObjectUtil.CreateTile("Grid", ["/Resources/Textures/Town/Grid.png"], new TBX.Vertex(960, TOWN_CENTER), new TBX.Vertex(1000,1000));
@@ -64,7 +62,7 @@ class Town
         let Loc = FieldTransform.FindField(Args.Location);
         if(Loc && this._Pointer)
         {
-            if(!this._Floors[this._Current].ApplyAble(this._Pointer.Structure, Loc)) this._Pointer.Paint = TBX.Color.Red;
+            if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Loc)) this._Pointer.Paint = TBX.Color.Red;
             else this._Pointer.Paint = TBX.Color.White;
             this._Pointer.Modified = true;
             let BuildLoc:TBX.Vertex = FieldTransform.FieldWorldCoords(Loc);
@@ -90,16 +88,21 @@ class Town
     }
     private Build(Location:TBX.Vertex) : void
     {
-        if(!this._Floors[this._Current].ApplyAble(this._Pointer.Structure, Location)) return;
+        if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Location)) return;
         let NewBuilding:Building = this._Pointer.Copy();
-        this._Floors[this._Current].Apply(NewBuilding.Structure, Location);
-        this._Floors[this._Current].Print();
+        this._Floors[this._Current].Layout.Apply(NewBuilding.Structure, Location);
         let BuildLoc:TBX.Vertex = FieldTransform.FieldWorldCoords(Location);
         BuildLoc.Y -= this._Pointer.Data["OffsetY"];
         BuildLoc.Z = 0.1 * (this._Current+1) + FieldTransform.FieldZPosition(Location);
         NewBuilding.Position = BuildLoc;
-        this._Buildings.push(NewBuilding);
+        this._Floors[this._Current].Buildings.push(NewBuilding);
         this._Scene.Attach(NewBuilding);
         this._Pointer = null;
+        if(this._Current + 1 == this._Floors.length) this._Floors.push(new Floor(null, this._Floors.length));
+        this.UpdateMovers();
+    }
+    private UpdateMovers() : void
+    {
+
     }
 }
