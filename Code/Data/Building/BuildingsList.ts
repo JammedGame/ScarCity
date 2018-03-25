@@ -4,23 +4,29 @@ let BuildingsList =
 [
     {
         Name: "Clayman",
-        Size: 280,
+        SizeX: 280,
+        SizeY: 280,
+        OffsetX: 0,
         OffsetY: 70,
-        Structure: { X:1, Y:1, Fields:[1] },
-        Foundations: { X:1, Y:1, Fields:[1] }
+        Structure: { X:2, Y:2, Fields:[1,1,1,0] },
+        Foundations: { X:2, Y:2, Fields:[1,0,1,0] }
     },
     {
         Name: "Pool",
-        Size: 280,
+        SizeX: 280,
+        SizeY: 280,
+        OffsetX: 0,
         OffsetY: 70,
         Structure: { X:1, Y:1, Fields:[1] },
         Foundations: { X:1, Y:1, Fields:[1] }
     },
     {
         Name: "Powerplant",
-        Size: 280,
+        SizeX: 280,
+        SizeY: 280,
+        OffsetX: 0,
         OffsetY: 70,
         Structure: { X:1, Y:1, Fields:[1] },
         Foundations: { X:1, Y:1, Fields:[1] }
-    }
+    },
 ]

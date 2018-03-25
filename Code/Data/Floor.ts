@@ -31,4 +31,12 @@ class Floor
     {
         return new Floor(this);
     }
+    public Up() : void
+    {
+        for(let i in this._Buildings) this._Buildings[i].Position.Y += 138;
+    }
+    public Down() : void
+    {
+        for(let i in this._Buildings) this._Buildings[i].Position.Y -= 138;
+    }
 }

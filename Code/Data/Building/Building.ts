@@ -11,6 +11,7 @@ class Building extends TBX.Tile
     private _Price:ResourceSet;
     private _Structure:Layout;
     private _Foundations:Layout;
+    private _Satelites:TBX.Tile[];
     public get BID():string { return this._BID; }
     public get Price():ResourceSet { return this._Price; }
     public get Structure():Layout { return this._Structure; }
@@ -32,16 +33,15 @@ class Building extends TBX.Tile
             this._Price = new ResourceSet();
             this._Structure = new Layout(null, new TBX.Vertex(2,2));
             this._Foundations = new Layout(null, new TBX.Vertex(2,2));
-            if(BID) this.Init(BID);
         }
     }
     public Copy() : Building
     {
         return new Building(this);
     }
-    private Init(BID:string) : void
+    public Init() : void
     {
-        this.Collection = new TBX.ImageCollection(null, ["/Resources/Textures/Buildings/"+BID+".png"]);
+        this.Collection = new TBX.ImageCollection(null, ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+".png"]);
         this.Index = 0;
     }
     public BuildAble(Floor:Layout, Position:TBX.Vertex) : boolean
