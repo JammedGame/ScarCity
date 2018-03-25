@@ -7,34 +7,41 @@ import { ResourceSet } from "./../Resource/ResourceSet";
 
 class Building extends TBX.Tile
 {
+    private _BID:string;
     private _Price:ResourceSet;
     private _Structure:Layout;
     private _Foundations:Layout;
+    public get BID():string { return this._BID; }
     public get Price():ResourceSet { return this._Price; }
-    public constructor(Old?:Building, ID?:string)
+    public get Structure():Layout { return this._Structure; }
+    public get Foundations():Layout { return this._Foundations; }
+    public constructor(Old?:Building, BID?:string)
     {
         super(Old);
         if(Old)
         {
+            this._BID = Old._BID;
             this._Price = Old._Price.Copy();
             this._Structure = Old._Structure.Copy();
             this._Foundations = Old._Foundations.Copy();
         }
         else
         {
+            if(BID) this._BID = BID;
+            else this._BID = "";
             this._Price = new ResourceSet();
             this._Structure = new Layout(null, new TBX.Vertex(2,2));
             this._Foundations = new Layout(null, new TBX.Vertex(2,2));
-            if(ID) this.Init(ID);
+            if(BID) this.Init(BID);
         }
     }
     public Copy() : Building
     {
         return new Building(this);
     }
-    private Init(ID:string) : void
+    private Init(BID:string) : void
     {
-        this.Collection = new TBX.ImageCollection(null, ["/Resources/Textures/Buildings/"+ID+".png"]);
+        this.Collection = new TBX.ImageCollection(null, ["/Resources/Textures/Buildings/"+BID+".png"]);
         this.Index = 0;
     }
     public BuildAble(Floor:Layout, Position:TBX.Vertex) : boolean

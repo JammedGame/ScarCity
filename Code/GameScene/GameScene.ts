@@ -3,20 +3,24 @@ export { GameScene };
 import * as TBX from "engineer-js";
 
 import { Town } from "./../Data/Town";
+import { Store } from "./Store";
 
 class GameScene extends TBX.Scene2D
 {
     private _Town:Town;
+    private _Store:Store;
     public constructor(Old?:GameScene)
     {
         super(Old);
         if(Old)
         {
             this._Town = Old._Town.Copy(this);
+            this._Store = Old._Store.Copy(this);
         }
         else
         {
             this._Town = new Town(null, this);
+            this._Store = new Store(null, this);
             this.Init();
         }
     }
@@ -24,6 +28,10 @@ class GameScene extends TBX.Scene2D
     {
         this.Name = "Game";
         this.BackColor = TBX.Color.FromRGBA(0, 0, 0, 255);
+    }
+    public SetSelection(Selected:any) : void
+    {
+        this._Town.SetPointer(Selected);
     }
     private KeyPress(G: any, Args: any): void
     {

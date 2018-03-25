@@ -9,9 +9,11 @@ class Layout
     public get Size():TBX.Vertex { return this._Size; }
     public constructor(Old?:Layout, Size?:TBX.Vertex)
     {
+        this._Fields = [];
         if(Old)
         {
             this._Size = Old._Size.Copy();
+            for(let i in Old._Fields) this._Fields.push(Old._Fields[i]);
         }
         else
         {
@@ -31,7 +33,7 @@ class Layout
         {
             for(let j = 0; j < this._Size.Y; j++)
             {
-                this._Fields.push(0);
+                this._Fields.push(1);
             }
         }
     }
@@ -55,7 +57,7 @@ class Layout
             {
                 if(Build._Fields[j * Build._Size.X + i] == 1)
                 {
-                    if(this._Fields[(j + Position.Y) * Build._Size.X + (i + Position.X)] != 1) return false;
+                    if(this._Fields[(j + Position.Y) * this._Size.X + (i + Position.X)] != 1) return false;
                 }
             }
         }
@@ -69,9 +71,21 @@ class Layout
             {
                 if(Build._Fields[j * Build._Size.X + i] == 1)
                 {
-                    this._Fields[(j + Position.Y) * Build._Size.X + (i + Position.X)] = 0;
+                    this._Fields[(j + Position.Y) * this._Size.X + (i + Position.X)] = 0;
                 }
             }
+        }
+    }
+    public Print() : void
+    {
+        for(let i = 0; i < this.Size.X; i++)
+        {
+            let Line = i+": ";
+            for(let j = 0; j < this.Size.Y; j++)
+            {
+                Line += this._Fields[j * this._Size.X + i] + " ";
+            }
+            console.log(Line);
         }
     }
 }
