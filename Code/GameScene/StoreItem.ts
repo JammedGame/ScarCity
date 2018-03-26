@@ -102,8 +102,8 @@ class StoreItem extends TBX.Tile
     public SetActive(Active:boolean) : void
     {
         this.Active = Active;
-        this._IncomeIcon.Active = Active;
-        this._IncomeTag.Active = Active;
+        this._IncomeIcon.Active = Active && !this._Building.Unitar;
+        this._IncomeTag.Active = Active && !this._Building.Unitar;
     }
     public OnAttach(Args:any) : void
     {

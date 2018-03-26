@@ -67,7 +67,7 @@ class Town
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
         this._Indicator = new Title(null, "Floor: 1", new TBX.Vertex(1770, 920, 1));
         this._Indicator.Size.Y = 80;
-        this._Indicator.TextSize = 50;
+        this._Indicator.TextSize = 35;
         this._Scene.Attach(this._Indicator);
         this._Restart = TBX.SceneObjectUtil.CreateTile("Title", ["Resources/Textures/Icons/Restart.png"], new TBX.Vertex(1550, 100, 1), new TBX.Vertex(60,60));
         this._Restart.Events.Click.push(this.Restart.bind(this));
