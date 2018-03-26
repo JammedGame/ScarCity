@@ -41,7 +41,7 @@ class Menu extends TBX.Scene2D
         this.Attach(this._Settings);
         this._Credits = new MenuButton(null, "Credits", this.CreditsClick.bind(this), new TBX.Vertex(960, 850));
         this.Attach(this._Credits);
-        this._BackB = new MenuButton(null, "Back", this.BackClick.bind(this), new TBX.Vertex(960, 850));
+        this._BackB = new MenuButton(null, "Back", this.BackClick.bind(this), new TBX.Vertex(960, 900));
         this.Attach(this._BackB);
         this._BackB.Active = false;
         this._CreditsText = new Credits();

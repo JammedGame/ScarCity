@@ -27,6 +27,11 @@ class Slider extends TBX.Tile
     }
     public Init() : void
     {
+        let Saved = localStorage.getItem("Volume");
+        if(Saved)
+        {
+            this._Percent = JSON.parse(Saved);
+        }
         this.Size = new TBX.Vertex(800, 50, 1);
         this.Paint = TBX.Color.FromString("#444444");
         this._Pointer = TBX.SceneObjectUtil.CreateTile("SliderPointer", null, new TBX.Vertex(), new TBX.Vertex(800, 50, 1));

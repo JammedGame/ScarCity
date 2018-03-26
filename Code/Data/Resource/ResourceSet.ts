@@ -44,9 +44,9 @@ class ResourceSet
         this.Add(new Resource(null, "Metal", 0, 0));
         this.Add(new Resource(null, "Concrete", 0, 0));
         this.Add(new Resource(null, "Glass", 0, 0));
-        this.Add(new Resource(null, "Marble", 0, 20));
-        this.Add(new Resource(null, "Gold", 0, 20));
-        this.Add(new Resource(null, "Jewel", 0, 20));
+        this.Add(new Resource(null, "Marble", 0, 0));
+        this.Add(new Resource(null, "Gold", 0, 0));
+        this.Add(new Resource(null, "Jewel", 0, 0));
         ResourceSet.Single = this;
     }
     public Get(Name:string) : Resource

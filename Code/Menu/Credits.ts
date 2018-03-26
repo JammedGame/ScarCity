@@ -21,31 +21,39 @@ class Credits
     }
     private Init() : void
     {
-        let Text:Title = new Title(null, "Programming", new TBX.Vertex(960, 150));
+        let Text:Title = new Title(null, "Programming", new TBX.Vertex(960, 100));
         Text.TextSize = 45;
         Text.Size.Y = 80;
         this._Items.push(Text);
-        Text = new Title(null, "Miloš Manojlović", new TBX.Vertex(960, 250));
+        Text = new Title(null, "Miloš Manojlović", new TBX.Vertex(960, 180));
         Text.TextSize = 40;
         Text.Size.Y = 80;
         this._Items.push(Text);
-        Text = new Title(null, "Filip Radulović", new TBX.Vertex(960, 300));
+        Text = new Title(null, "Filip Radulović", new TBX.Vertex(960, 230));
         Text.TextSize = 40;
         Text.Size.Y = 80;
         this._Items.push(Text);
-        Text = new Title(null, "Design", new TBX.Vertex(960, 400));
+        Text = new Title(null, "Design", new TBX.Vertex(960, 350));
         Text.TextSize = 45;
         Text.Size.Y = 80;
         this._Items.push(Text);
-        Text = new Title(null, "Filip Abramović", new TBX.Vertex(960, 500));
+        Text = new Title(null, "Filip Abramović", new TBX.Vertex(960, 430));
         Text.TextSize = 40;
         Text.Size.Y = 80;
         this._Items.push(Text);
-        Text = new Title(null, "Suzana Miladinov", new TBX.Vertex(960, 550));
+        Text = new Title(null, "Suzana Miladinov", new TBX.Vertex(960, 480));
         Text.TextSize = 40;
         Text.Size.Y = 80;
         this._Items.push(Text);
-        Text = new Title(null, "Žarko Goronja", new TBX.Vertex(960, 600));
+        Text = new Title(null, "Žarko Goronja", new TBX.Vertex(960, 530));
+        Text.TextSize = 40;
+        Text.Size.Y = 80;
+        this._Items.push(Text);
+        Text = new Title(null, "Music", new TBX.Vertex(960, 650));
+        Text.TextSize = 45;
+        Text.Size.Y = 80;
+        this._Items.push(Text);
+        Text = new Title(null, "Thanks to cynicmusic.com", new TBX.Vertex(960, 730));
         Text.TextSize = 40;
         Text.Size.Y = 80;
         this._Items.push(Text);
