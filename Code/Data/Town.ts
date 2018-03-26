@@ -10,12 +10,14 @@ import { Building } from "./Building/Building";
 import { FieldTransform } from "./FieldTransform";
 import { GameScene } from "./../GameScene/GameScene";
 import { SoundManager } from "./../Menu/SoundManager";
+import { EndMessage } from "./EndMessage";
 
 const TOWN_SIZE = 1000;
 const TOWN_CENTER = 650;
 
 class Town
 {
+    private _End:EndMessage;
     private _Finished:boolean;
     private _Current:number;
     private _Scene:TBX.Scene2D;
@@ -70,6 +72,8 @@ class Town
         this._Restart = TBX.SceneObjectUtil.CreateTile("Title", ["Resources/Textures/Icons/Restart.png"], new TBX.Vertex(1550, 100, 1), new TBX.Vertex(60,60));
         this._Restart.Events.Click.push(this.Restart.bind(this));
         this._Scene.Attach(this._Restart);
+        this._End = new EndMessage(null, this.Restart.bind(this));
+        this._Scene.Attach(this._End);
         this.InitMovers();
     }
     private Restart()
@@ -80,6 +84,7 @@ class Town
         this._Floors = [];
         this._Floors.push(new Floor(null, 0));
         this._Finished = false;
+        this._End.Toggle(false);
     }
     private InitBackground() : void
     {
@@ -166,6 +171,7 @@ class Town
         {
             NewBuilding.SetUnitar(this._Scene);
             this._Finished = true;
+            this._End.Toggle(true);
         }
         this._Floors[this._Current].Buildings.push(NewBuilding);
         this._Scene.Attach(NewBuilding);
