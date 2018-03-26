@@ -36,6 +36,8 @@ class ResourceSet
     }
     public InitGlobal() : void
     {
+        this._Hash = {};
+        this._Resources = [];
         this.Add(new Resource(null, "Wood", 0, 10));
         this.Add(new Resource(null, "Stone", 0, 10));
         this.Add(new Resource(null, "Sand", 0, 10));

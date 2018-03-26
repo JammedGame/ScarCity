@@ -22,8 +22,8 @@ class Title extends TBX.Label
         this.BackColor = TBX.Color.Empty;
         this.ForeColor = TBX.Color.White;
         this.Border.Width = 0;
-        this.Size.X = 800;
-        this.Size.Y = 250;
+        this.Size.X = 1200;
+        this.Size.Y = 400;
         this.Padding = 20;
         this.TextSize = 150;
     }

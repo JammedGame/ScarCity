@@ -20,14 +20,24 @@ class MenuButton extends TBX.Button
     }
     private Init() : void
     {
-        this.BackColor = TBX.Color.FromString("#FF8C00");
+        this.BackColor = TBX.Color.Empty;
         this.ForeColor = TBX.Color.White;
         this.Border.Color = TBX.Color.White;
-        this.Border.Width = 5;
-        this.Border.Radius = 48;
+        this.Border.Width = 3;
+        this.Border.Radius = 3;
         this.Size.X = 350;
         this.Size.Y = 100;
-        this.Padding = 20;
+        this.Padding = 15;
         this.TextSize = 45;
+        this.Events.MouseEnter.push(this.MouseEnter.bind(this));
+        this.Events.MouseLeave.push(this.MouseLeave.bind(this));
+    }
+    private MouseEnter() : void
+    {
+        this.BackColor = TBX.Color.FromRGBA(50,50,50,50);
+    }
+    private MouseLeave() : void
+    {
+        this.BackColor = TBX.Color.Empty;
     }
 }

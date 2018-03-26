@@ -95,8 +95,8 @@ class StoreItem extends TBX.Tile
         this._IncomeTag.Position = new TBX.Vertex(Position.X + 80, Position.Y + 50, 2);
         for(let i in this._PriceIcons)
         {
-            this._PriceTags[i].Position = new TBX.Vertex(Position.X - 60, Position.Y - 60 + this._PriceIcons[i].Data["Offset"], 2);
-            this._PriceIcons[i].Position = new TBX.Vertex(Position.X - 10, Position.Y - 60 + this._PriceIcons[i].Data["Offset"], 2);
+            this._PriceTags[i].Position = new TBX.Vertex(Position.X + 150, Position.Y - 60 + this._PriceIcons[i].Data["Offset"], 2);
+            this._PriceIcons[i].Position = new TBX.Vertex(Position.X + 200, Position.Y - 60 + this._PriceIcons[i].Data["Offset"], 2);
         }
     }
     public SetActive(Active:boolean) : void

@@ -47,4 +47,8 @@ class Floor
     {
         for(let i in this._Buildings) this._Buildings[i].SetShade(Color);
     }
+    public Destroy(Scene:TBX.Scene2D)
+    {
+        for(let i in this._Buildings) Scene.Remove(this._Buildings[i]);
+    }
 }
