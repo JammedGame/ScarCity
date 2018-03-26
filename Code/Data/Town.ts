@@ -9,6 +9,7 @@ import { Layout } from "./Layout/Layout";
 import { Building } from "./Building/Building";
 import { FieldTransform } from "./FieldTransform";
 import { GameScene } from "./../GameScene/GameScene";
+import { SoundManager } from "./../Menu/SoundManager";
 
 const TOWN_SIZE = 1000;
 const TOWN_CENTER = 650;
@@ -149,6 +150,7 @@ class Town
         {
             return;
         }
+        SoundManager.Single.Effect();
         let NewBuilding:Building = this._Pointer.Copy();
         (<GameScene>this._Scene).Resources.Pay(NewBuilding.Price);
         (<GameScene>this._Scene).Resources.Receive(NewBuilding.Income);
