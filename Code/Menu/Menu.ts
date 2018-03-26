@@ -95,9 +95,9 @@ class Menu extends TBX.Scene2D
     }
     private InitBackground() : void
     {
-        this._Sky = TBX.SceneObjectUtil.CreateTile("Sky", ["/Resources/Textures/Town/Sky.png"], new TBX.Vertex(960, TOWN_CENTER + 824), new TBX.Vertex(1920,4320));
-        this._Stars = TBX.SceneObjectUtil.CreateTile("Stars", ["/Resources/Textures/Town/Stars.png"], new TBX.Vertex(960, TOWN_CENTER + 824), new TBX.Vertex(1920,4320));
-        this._Clouds = TBX.SceneObjectUtil.CreateTile("Stars", ["/Resources/Textures/Town/Clouds.png"], new TBX.Vertex(960, TOWN_CENTER + 824), new TBX.Vertex(1920,4320));
+        this._Sky = TBX.SceneObjectUtil.CreateTile("Sky", ["Resources/Textures/Town/Sky.png"], new TBX.Vertex(960, TOWN_CENTER + 824), new TBX.Vertex(1920,4320));
+        this._Stars = TBX.SceneObjectUtil.CreateTile("Stars", ["Resources/Textures/Town/Stars.png"], new TBX.Vertex(960, TOWN_CENTER + 824), new TBX.Vertex(1920,4320));
+        this._Clouds = TBX.SceneObjectUtil.CreateTile("Stars", ["Resources/Textures/Town/Clouds.png"], new TBX.Vertex(960, TOWN_CENTER + 824), new TBX.Vertex(1920,4320));
         this.Attach(this._Sky);
         this.Attach(this._Stars);
         this.Attach(this._Clouds);

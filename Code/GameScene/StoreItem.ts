@@ -52,7 +52,7 @@ class StoreItem extends TBX.Tile
     private Init() : void
     {
         this.Size = new TBX.Vertex(ICON_SIZE,ICON_SIZE,1);
-        this.Collection = new TBX.ImageCollection(null, ["/Resources/Textures/Buildings/"+this._Building.BID+"/"+this._Building.BID+".png"]);
+        this.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Buildings/"+this._Building.BID+"/"+this._Building.BID+".png"]);
         this.Index = 0;
         this.Data["Pickable"] = true;
         this.Events.Click.push(this.OnClick.bind(this));

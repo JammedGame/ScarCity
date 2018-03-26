@@ -46,8 +46,8 @@ class Store
         Overlay.Paint = TBX.Color.FromRGBA(50,50,50,50);
         this._Scene.Attach(Overlay);
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
-        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(HORIZONTAL_POSITION, 60), new TBX.Vertex(60,85,1));
-        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(HORIZONTAL_POSITION, 1020), new TBX.Vertex(60,85,1));
+        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["Resources/Textures/Icons/Up.png"], new TBX.Vertex(HORIZONTAL_POSITION, 60), new TBX.Vertex(60,85,1));
+        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["Resources/Textures/Icons/Down.png"], new TBX.Vertex(HORIZONTAL_POSITION, 1020), new TBX.Vertex(60,85,1));
         this._Up.Events.Click.push(this.UpClick.bind(this));
         this._Down.Events.Click.push(this.DownClick.bind(this));
         this._Scene.Attach(this._Up);

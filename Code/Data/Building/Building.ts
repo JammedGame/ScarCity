@@ -66,7 +66,7 @@ class Building extends TBX.Tile
     {
         if(this._Unitar)
         {
-            this.Collection = new TBX.ImageCollection(null, ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+".png"]);
+            this.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Buildings/"+this._BID+"/"+this._BID+".png"]);
             this.Index = 0;
             this.Active = false;
         }
@@ -78,9 +78,9 @@ class Building extends TBX.Tile
                 {
                     let Satelite:TBX.Tile
                     if(!this._Unitar) Satelite = TBX.SceneObjectUtil.CreateTile(this._BID+"_"+i+"_"+j,
-                    ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_"+i+"_"+j+".png"]);
+                    ["Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_"+i+"_"+j+".png"]);
                     else Satelite = TBX.SceneObjectUtil.CreateTile(this._BID+"_"+i+"_"+j,
-                    ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_0.png"]);
+                    ["Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_0.png"]);
                     Satelite.Size = new TBX.Vertex(SATELITE_SIZE,SATELITE_SIZE,1);
                     Satelite.Data["Offset"] = new TBX.Vertex(i,j);
                     Satelite.Position = new TBX.Vertex(-1000,-1000);

@@ -57,8 +57,8 @@ class Town
     {
         this.InitBackground();
         this._Floors.push(new Floor(null, 0));
-        this._Base = TBX.SceneObjectUtil.CreateTile("Base", ["/Resources/Textures/Town/Base.png"], new TBX.Vertex(960, TOWN_CENTER+260), new TBX.Vertex(1000,2000));
-        this._Grid = TBX.SceneObjectUtil.CreateTile("Grid", ["/Resources/Textures/Town/Grid.png"], new TBX.Vertex(960, TOWN_CENTER), new TBX.Vertex(1000,1000));
+        this._Base = TBX.SceneObjectUtil.CreateTile("Base", ["Resources/Textures/Town/Base.png"], new TBX.Vertex(960, TOWN_CENTER+260), new TBX.Vertex(1000,2000));
+        this._Grid = TBX.SceneObjectUtil.CreateTile("Grid", ["Resources/Textures/Town/Grid.png"], new TBX.Vertex(960, TOWN_CENTER), new TBX.Vertex(1000,1000));
         this._Grid.Paint = TBX.Color.FromString("#DFDFDF");
         this._Grid.Active = false;
         this._Scene.Attach(this._Base);
@@ -88,17 +88,17 @@ class Town
     }
     private InitBackground() : void
     {
-        this._Sky = TBX.SceneObjectUtil.CreateTile("Sky", ["/Resources/Textures/Town/Sky.png"], new TBX.Vertex(960, TOWN_CENTER - 1624), new TBX.Vertex(1920,4320));
-        this._Stars = TBX.SceneObjectUtil.CreateTile("Stars", ["/Resources/Textures/Town/Stars.png"], new TBX.Vertex(960, TOWN_CENTER - 1624), new TBX.Vertex(1920,4320));
-        this._Clouds = TBX.SceneObjectUtil.CreateTile("Stars", ["/Resources/Textures/Town/Clouds.png"], new TBX.Vertex(960, TOWN_CENTER - 1624), new TBX.Vertex(1920,4320));
+        this._Sky = TBX.SceneObjectUtil.CreateTile("Sky", ["Resources/Textures/Town/Sky.png"], new TBX.Vertex(960, TOWN_CENTER - 1624), new TBX.Vertex(1920,4320));
+        this._Stars = TBX.SceneObjectUtil.CreateTile("Stars", ["Resources/Textures/Town/Stars.png"], new TBX.Vertex(960, TOWN_CENTER - 1624), new TBX.Vertex(1920,4320));
+        this._Clouds = TBX.SceneObjectUtil.CreateTile("Stars", ["Resources/Textures/Town/Clouds.png"], new TBX.Vertex(960, TOWN_CENTER - 1624), new TBX.Vertex(1920,4320));
         this._Scene.Attach(this._Sky);
         this._Scene.Attach(this._Stars);
         this._Scene.Attach(this._Clouds);
     }
     private InitMovers() : void
     {
-        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["/Resources/Textures/Icons/Up.png"], new TBX.Vertex(1720, 1000, 1), new TBX.Vertex(80,100,1));
-        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["/Resources/Textures/Icons/Down.png"], new TBX.Vertex(1820, 1000, 1), new TBX.Vertex(80,100,1));
+        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["Resources/Textures/Icons/Up.png"], new TBX.Vertex(1720, 1000, 1), new TBX.Vertex(80,100,1));
+        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["Resources/Textures/Icons/Down.png"], new TBX.Vertex(1820, 1000, 1), new TBX.Vertex(80,100,1));
         this._Up.Events.Click.push(this.UpClick.bind(this));
         this._Down.Events.Click.push(this.DownClick.bind(this));
         this._Scene.Attach(this._Up);
