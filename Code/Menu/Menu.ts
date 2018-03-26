@@ -5,6 +5,8 @@ import * as TBX from "engineer-js";
 import { Title } from "./Title";
 import { Credits } from "./Credits";
 import { MenuButton } from "./MenuButton";
+import { Slider } from "./Slider";
+import { SoundManager } from "./SoundManager";
 
 const TOWN_SIZE = 1000;
 const TOWN_CENTER = 650;
@@ -20,6 +22,7 @@ class Menu extends TBX.Scene2D
     private _Credits:MenuButton;
     private _CreditsText:Credits;
     private _BackB:MenuButton;
+    private _SSlider:Slider;
     public constructor()
     {
         super();
@@ -44,6 +47,17 @@ class Menu extends TBX.Scene2D
         this._CreditsText = new Credits();
         this._CreditsText.Connect(this);
         this._CreditsText.Toggle(false);
+        this._SSlider = new Slider();
+        this._SSlider.Position = new TBX.Vertex(960, 400, 1);
+        this._SSlider.Size = new TBX.Vertex(800, 50, 1);
+        this._SSlider.Toggle(false);
+        this._SSlider.Change.push(this.SliderChange.bind(this));
+        this.Attach(this._SSlider);
+        let S = new SoundManager();
+    }
+    private SliderChange(Volume:number) : void
+    {
+        SoundManager.Single.SetVolume(Math.floor(100 * Volume));
     }
     public PlayClick(G:any, Args:any) : void
     {
@@ -56,6 +70,7 @@ class Menu extends TBX.Scene2D
         this._Settings.Active = false;
         this._Credits.Active = false;
         this._CreditsText.Toggle(true);
+        this._SSlider.Toggle(false);
         this._BackB.Active = true;
     }
     public SettingsClick(G:any, Args:any) : void
@@ -65,6 +80,7 @@ class Menu extends TBX.Scene2D
         this._Settings.Active = false;
         this._Credits.Active = false;
         this._CreditsText.Toggle(false);
+        this._SSlider.Toggle(true);
         this._BackB.Active = true;
     }
     public BackClick(G:any, Args:any) : void
@@ -74,6 +90,7 @@ class Menu extends TBX.Scene2D
         this._Settings.Active = true;
         this._Credits.Active = true;
         this._CreditsText.Toggle(false);
+        this._SSlider.Toggle(false);
         this._BackB.Active = false;
     }
     private InitBackground() : void
