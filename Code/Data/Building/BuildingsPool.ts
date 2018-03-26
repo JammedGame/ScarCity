@@ -34,6 +34,7 @@ class BuildingsPool
         for(let i in BuildingsList)
         {
             let New = new Building(null, BuildingsList[i].Name);
+            New.Unitar = BuildingsList[i].Unitar;
             New.Structure.Create(new TBX.Vertex(BuildingsList[i].Structure.X, BuildingsList[i].Structure.Y), BuildingsList[i].Structure.Fields);
             for(let j in BuildingsList[i].Foundations)
             {

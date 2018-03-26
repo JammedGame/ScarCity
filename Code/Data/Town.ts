@@ -16,6 +16,7 @@ const TOWN_CENTER = 650;
 
 class Town
 {
+    private _Finished:boolean;
     private _Current:number;
     private _Scene:TBX.Scene2D;
     private _Base:TBX.Tile;
@@ -36,11 +37,13 @@ class Town
         if(Old)
         {
             this._Current = Old._Current;
+            this._Finished = Old._Finished;
             for(let i in this._Floors) this._Floors.push(Old._Floors[i].Copy());
         }
         else
         {
             this._Current = 0;
+            this._Finished = false;
             this.Init();
         }
     }
@@ -76,6 +79,7 @@ class Town
         for(let i in this._Floors) this._Floors[i].Destroy(this._Scene);
         this._Floors = [];
         this._Floors.push(new Floor(null, 0));
+        this._Finished = false;
     }
     private InitBackground() : void
     {
@@ -98,6 +102,7 @@ class Town
     }
     public SetPointer(Selected:Building) : void
     {
+        if(this._Finished) return;
         if(this._Pointer)
         {
             this._Scene.Remove(this._Pointer);
@@ -157,6 +162,11 @@ class Town
         (<GameScene>this._Scene).UpdateRes();
         this._Floors[this._Current].Layout.Apply(NewBuilding.Structure, Location);
         NewBuilding.SetLocation(Location, this._Current);
+        if(NewBuilding.Unitar)
+        {
+            NewBuilding.SetUnitar(this._Scene);
+            this._Finished = true;
+        }
         this._Floors[this._Current].Buildings.push(NewBuilding);
         this._Scene.Attach(NewBuilding);
         this._Scene.Remove(this._Pointer);
@@ -166,6 +176,7 @@ class Town
     }
     private UpClick() : void
     {
+        if(this._Finished) return;
         if(!this._Up.Active) return;
         this._Floors[this._Current+1].Toggle(true);
         this._Current++;
@@ -182,6 +193,7 @@ class Town
     }
     private DownClick() : void
     {
+        if(this._Finished) return;
         if(!this._Down.Active) return;
         this._Current--;
         for(let i in this._Floors) this._Floors[i].Down();

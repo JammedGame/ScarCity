@@ -11,7 +11,7 @@ class SoundManager
     {
         this._Music = new TBX.SoundObject("Resources/Sound/music.mp3");
         this._Effect = new TBX.SoundObject("Resources/Sound/effect.mp3");
-        this._Effect.Volume = 2;
+        this._Effect.Volume = 1;
         this._Music.Looped = true;
         this._Music.Play();
         SoundManager.Single = this;

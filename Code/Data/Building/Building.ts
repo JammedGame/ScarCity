@@ -14,6 +14,7 @@ class Building extends TBX.Tile
 {
     private _BID:string;
     private _Income:Resource;
+    private _Unitar:boolean;
     private _Price:ResourceSet;
     private _Structure:Layout;
     private _Foundations:Layout[];
@@ -21,6 +22,8 @@ class Building extends TBX.Tile
     public get BID():string { return this._BID; }
     public get Income():Resource { return this._Income; }
     public set Income(value:Resource) { this._Income = value; }
+    public get Unitar():boolean { return this._Unitar; }
+    public set Unitar(value:boolean) { this._Unitar = value; }
     public get Price():ResourceSet { return this._Price; }
     public set Price(value:ResourceSet) { this._Price = value; }
     public get Structure():Layout { return this._Structure; }
@@ -33,6 +36,7 @@ class Building extends TBX.Tile
         if(Old)
         {
             this._BID = Old._BID;
+            this._Unitar = Old._Unitar;
             this._Income = Old._Income.Copy();
             this._Price = Old._Price.Copy();
             this._Structure = Old._Structure.Copy();
@@ -47,6 +51,7 @@ class Building extends TBX.Tile
         {
             if(BID) this._BID = BID;
             else this._BID = "";
+            this._Unitar = false;
             this._Income = new Resource();
             this._Price = new ResourceSet();
             this._Structure = new Layout(null, new TBX.Vertex(2,2));
@@ -59,14 +64,23 @@ class Building extends TBX.Tile
     }
     public Init() : void
     {
+        if(this._Unitar)
+        {
+            this.Collection = new TBX.ImageCollection(null, ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+".png"]);
+            this.Index = 0;
+            this.Active = false;
+        }
         for(let i = 0; i < this._Structure.Size.X; i++)
         {
             for(let j = 0; j < this._Structure.Size.Y; j++)
             {
                 if(this._Structure.Fields[j*this._Structure.Size.X + i] == 1)
                 {
-                    let Satelite:TBX.Tile = TBX.SceneObjectUtil.CreateTile(this._BID+"_"+i+"_"+j,
+                    let Satelite:TBX.Tile
+                    if(!this._Unitar) Satelite = TBX.SceneObjectUtil.CreateTile(this._BID+"_"+i+"_"+j,
                     ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_"+i+"_"+j+".png"]);
+                    else Satelite = TBX.SceneObjectUtil.CreateTile(this._BID+"_"+i+"_"+j,
+                    ["/Resources/Textures/Buildings/"+this._BID+"/"+this._BID+"_0.png"]);
                     Satelite.Size = new TBX.Vertex(SATELITE_SIZE,SATELITE_SIZE,1);
                     Satelite.Data["Offset"] = new TBX.Vertex(i,j);
                     Satelite.Position = new TBX.Vertex(-1000,-1000);
@@ -74,6 +88,11 @@ class Building extends TBX.Tile
                 }
             }
         }
+    }
+    public SetUnitar(Scene:TBX.Scene2D) : void
+    {
+        this._Satelites = [];
+        this.Active = true;
     }
     public OnAttach(Args:any) : void
     {
@@ -96,6 +115,11 @@ class Building extends TBX.Tile
     public SetLocation(Location:TBX.Vertex, Floor:number) : void
     {
         this.Position = Location;
+        if(this._Unitar)
+        {
+            this.Position = new TBX.Vertex(960,540,2);
+            this.Size = new TBX.Vertex(1000,800,1);
+        }
         for(let i in this._Satelites)
         {
             let Satelite = this._Satelites[i];

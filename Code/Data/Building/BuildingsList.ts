@@ -2,58 +2,31 @@ export { BuildingsList }
 
 let BuildingsList =
 [
-    /* {
-        Name: "Pyramid",
+    {
+        Name: "SawmillI",
+        Unitar: false,
         Income:
         {
-            Name: "Diamond",
-            Income: 1
+            Name: "Wood",
+            Income: 2
         },
         Price:
         [
             {
-                Name: "Marble",
-                Amount: 10
-            },
-            {
-                Name: "Diamond",
-                Amount: 10
-            },
-            {
-                Name: "Gold",
-                Amount: 10
+                Name: "Sand",
+                Amount: 1
             }
-
         ],
-        Structure: { X:4, Y:4, Fields: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] },
-        Foundations:[
-            { X:4, Y:4, Fields: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] }
+        Structure: { X:1, Y:2, Fields:[1,1] },
+        Foundations:
+        [
+            { X:1, Y:2, Fields:[1,0] },
+            { X:1, Y:2, Fields:[0,1] }
         ]
-    },
-    */
-   {
-    Name: "SawmillI",
-    Income:
-    {
-        Name: "Wood",
-        Income: 2
-    },
-    Price:
-    [
-        {
-            Name: "Sand",
-            Amount: 1
-        }
-    ],
-    Structure: { X:1, Y:2, Fields:[1,1] },
-    Foundations:
-    [
-        { X:1, Y:2, Fields:[1,0] },
-        { X:1, Y:2, Fields:[0,1] }
-    ]
     },
     {
         Name: "StonemasonI",
+        Unitar: false,
         Income:
         {
             Name: "Stone",
@@ -75,6 +48,7 @@ let BuildingsList =
     },
     {
         Name: "SandpitI",
+        Unitar: false,
         Income:
         {
             Name: "Sand",
@@ -96,6 +70,7 @@ let BuildingsList =
     },
     {
         Name: "SawmillII",
+        Unitar: false,
         Income:
         {
             Name: "Wood",
@@ -119,6 +94,7 @@ let BuildingsList =
     },
     {
         Name: "StonemasonII",
+        Unitar: false,
         Income:
         {
             Name: "Stone",
@@ -140,6 +116,7 @@ let BuildingsList =
     },
     {
         Name: "SandpitII",
+        Unitar: false,
         Income:
         {
             Name: "Sand",
@@ -162,6 +139,7 @@ let BuildingsList =
     },
     {
         Name: "SawmillIII",
+        Unitar: false,
         Income:
         {
             Name: "Wood",
@@ -188,6 +166,7 @@ let BuildingsList =
     },
     {
         Name: "StonemasonIII",
+        Unitar: false,
         Income:
         {
             Name: "Stone",
@@ -217,6 +196,7 @@ let BuildingsList =
 
     {
         Name: "SandpitIII",
+        Unitar: false,
         Income:
         {
             Name: "Sand",
@@ -243,6 +223,7 @@ let BuildingsList =
    
        {
         Name: "MetalworksII",
+        Unitar: false,
         Income:
         {
             Name: "Metal",
@@ -267,6 +248,7 @@ let BuildingsList =
     },
     {
         Name: "MetalworksIII",
+        Unitar: false,
         Income:
         {
             Name: "Metal",
@@ -292,6 +274,7 @@ let BuildingsList =
     },
     {
         Name: "GlassworksII",
+        Unitar: false,
         Income:
         {
             Name: "Glass",
@@ -318,6 +301,7 @@ let BuildingsList =
     },
     {
         Name: "GlassworksIII",
+        Unitar: false,
         Income:
         {
             Name: "Glass",
@@ -349,6 +333,7 @@ let BuildingsList =
     },
     {
         Name: "ConcretoriumII",
+        Unitar: false,
         Income:
         {
             Name: "Concrete",
@@ -374,6 +359,7 @@ let BuildingsList =
     },
     {
         Name: "ConcretoriumIII",
+        Unitar: false,
         Income:
         {
             Name: "Concrete",
@@ -406,6 +392,7 @@ let BuildingsList =
     },
     {
         Name: "JewelryIV",
+        Unitar: false,
         Income:
         {
             Name: "Jewel",
@@ -435,6 +422,7 @@ let BuildingsList =
     },
     {
         Name: "MarblequarryIV",
+        Unitar: false,
         Income:
         {
             Name: "Marble",
@@ -460,6 +448,7 @@ let BuildingsList =
     },
     {
         Name: "GoldsmithIV",
+        Unitar: false,
         Income:
         {
             Name: "Gold",
@@ -484,12 +473,34 @@ let BuildingsList =
             { X:3, Y:2, Fields:[0,1,0,0,1,0] },
             { X:3, Y:2, Fields:[1,0,0,0,1,0] }
         ]
-    }
-    
-   
+    },
+    {
+        Name: "Pyramid",
+        Unitar: true,
+        Income:
+        {
+            Name: "Jewel",
+            Income: 10
+        },
+        Price:
+        [
+            {
+                Name: "Marble",
+                Amount: 10
+            },
+            {
+                Name: "Jewel",
+                Amount: 10
+            },
+            {
+                Name: "Gold",
+                Amount: 10
+            }
 
-   
-   
-   
-    
+        ],
+        Structure: { X:4, Y:4, Fields: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] },
+        Foundations:[
+            { X:4, Y:4, Fields: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] }
+        ]
+    }
 ]
