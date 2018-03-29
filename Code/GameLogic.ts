@@ -11,6 +11,7 @@ class GameLogic
     private _Runner:TBX.Runner;
     public constructor()
     {
+        TBX.Settings.GlobalFontScale = 1.0;
         this._Game = new TBX.Game();
         this._Game.Name = "ScarCity";
         this._Runner = new TBX.Runner(this._Game, TBX.DrawEngineType.ThreeJS);
