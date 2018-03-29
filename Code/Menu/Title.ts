@@ -26,6 +26,5 @@ class Title extends TBX.Label
         this.Size.Y = 400;
         this.Padding = 20;
         this.TextSize = 150;
-        this.Font = "'IBM Plex Sans Condensed', sans-serif;";
     }
 }

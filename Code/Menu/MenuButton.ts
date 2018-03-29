@@ -27,7 +27,6 @@ class MenuButton extends TBX.Button
         this.Border.Radius = 3;
         this.Size.X = 350;
         this.Size.Y = 100;
-        this.Font = "'IBM Plex Sans Condensed', sans-serif;";
         this.Padding = 15;
         this.TextSize = 45;
         this.Events.MouseEnter.push(this.MouseEnter.bind(this));
