@@ -56,6 +56,7 @@ class StoreItem extends TBX.Tile
         this.Index = 0;
         this.Data["Pickable"] = true;
         this.Events.Click.push(this.OnClick.bind(this));
+        this.Events.TouchStart.push(this.OnClick.bind(this));
         this._IncomeIcon = TBX.SceneObjectUtil.CreateTile("IncomeIcon", null, new TBX.Vertex(), new TBX.Vertex(50,50,1));
         this._IncomeIcon.Collection = ResourceArt.Single;
         this._IncomeIcon.Index = ResourceArt.FindIndex(this._Building.Income.Name);
@@ -71,15 +72,15 @@ class StoreItem extends TBX.Tile
             let NIcon = TBX.SceneObjectUtil.CreateTile("PriceIcon", null, new TBX.Vertex(), new TBX.Vertex(50,50,1));
             NIcon.Collection = ResourceArt.Single;
             NIcon.Index = ResourceArt.FindIndex(PItem.Name);
-            NIcon.Data["Offset"] = i * 50;
-            NIcon.Active = false;
+            NIcon.Data["Offset"] = 150 - i * 50 - 30;
+            NIcon.Active = TBX.Runner.Current.TouchscreenDevice();
             let NTag = new TBX.Label(null, "- "+PItem.Amount);
             NTag.Size = new TBX.Vertex(200,30,1);
             NTag.Border.Width = 0;
             NTag.BackColor = TBX.Color.Empty;
             NTag.ForeColor = TBX.Color.White;
             NTag.TextSize = 20;
-            NTag.Active = false;
+            NTag.Active = TBX.Runner.Current.TouchscreenDevice();
             this._PriceIcons.push(NIcon);
             this._PriceTags.push(NTag);
         }
@@ -154,8 +155,8 @@ class StoreItem extends TBX.Tile
         this.Modified = true;
         for(let i in this._PriceIcons)
         {
-            this._PriceTags[i].Active = false;
-            this._PriceIcons[i].Active = false;
+            this._PriceTags[i].Active = false || TBX.Runner.Current.TouchscreenDevice();
+            this._PriceIcons[i].Active = false || TBX.Runner.Current.TouchscreenDevice();
         }
     }
 }

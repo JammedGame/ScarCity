@@ -66,7 +66,7 @@ class Town
         this._Scene.Attach(this._Grid);
         this._Scene.Events.Click.push(this.MouseClick.bind(this));
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
-        this._Scene.Events.TouchStart.push(this.MouseMove.bind(this));
+        this._Scene.Events.TouchStart.push(this.Touch.bind(this));
         this._Indicator = new Title(null, "Floor: 1", new TBX.Vertex(1770, 920, 1));
         this._Indicator.Size.Y = 80;
         this._Indicator.TextSize = 35;
@@ -122,15 +122,40 @@ class Town
         this._Pointer.Active = false;
         this._Scene.Attach(this._Pointer);
     }
+    private Touch(G:TBX.Game, Args:any) : void
+    {
+        let Loc = FieldTransform.FindField(Args.Location);
+        if(Loc && this._SavedLoc && Loc.X == this._SavedLoc.X && Loc.Y == this._SavedLoc.Y && this._Pointer)
+        {
+            this.Build(Loc);
+            return;
+        }
+        if(Loc) this._SavedLoc = Loc.Copy();
+        if(Loc && this._Pointer)
+        {
+            if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Loc))
+            {
+                this._Pointer.Unavailable();
+            }
+            else if(this._Current != 0 && !this._Floors[this._Current-1].Layout.Copy().Invert().ApplyAbleArray(this._Pointer.Foundations, Loc))
+            {
+                this._Pointer.Unavailable();
+            }
+            else this._Pointer.Available();
+            this._Pointer.SetLocation(Loc, this._Current);
+            this._Pointer.Toggle(true);
+            this._Grid.Position.Z = 0.05 * (this._Current+1);
+            this._Grid.Active = true;
+        }
+        else
+        {
+            if(this._Pointer) this._Pointer.Toggle(false);
+            this._Grid.Active = false;
+        }
+    }
     private MouseMove(G:TBX.Game, Args:any) : void
     {
         let Loc = FieldTransform.FindField(Args.Location);
-        /*this._SavedLoc = Loc.Copy();
-        if(TBX.Runner.Current.TouchscreenDevice && Loc.X == this._SavedLoc.X && Loc.Y == this._SavedLoc.Y && this._Pointer)
-        {
-            this.Build(Loc);
-        }
-        else*/
         if(Loc && this._Pointer)
         {
             if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Loc))
@@ -155,6 +180,7 @@ class Town
     }
     private MouseClick(G:TBX.Game, Args:any) : void
     {
+        if(TBX.Runner.Current.TouchscreenDevice()) return;
         let Loc = FieldTransform.FindField(Args.Location);
         if(Loc && this._Pointer)
         {
