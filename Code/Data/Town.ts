@@ -32,6 +32,7 @@ class Town
     private _Pointer:Building;
     private _Indicator:Title;
     private _Restart:TBX.Tile;
+    private _SavedLoc:TBX.Vertex;
     public constructor(Old?:Town, Scene?:TBX.Scene2D)
     {
         this._Floors = [];
@@ -65,6 +66,7 @@ class Town
         this._Scene.Attach(this._Grid);
         this._Scene.Events.Click.push(this.MouseClick.bind(this));
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
+        this._Scene.Events.TouchStart.push(this.MouseMove.bind(this));
         this._Indicator = new Title(null, "Floor: 1", new TBX.Vertex(1770, 920, 1));
         this._Indicator.Size.Y = 80;
         this._Indicator.TextSize = 35;
@@ -123,6 +125,12 @@ class Town
     private MouseMove(G:TBX.Game, Args:any) : void
     {
         let Loc = FieldTransform.FindField(Args.Location);
+        /*this._SavedLoc = Loc.Copy();
+        if(TBX.Runner.Current.TouchscreenDevice && Loc.X == this._SavedLoc.X && Loc.Y == this._SavedLoc.Y && this._Pointer)
+        {
+            this.Build(Loc);
+        }
+        else*/
         if(Loc && this._Pointer)
         {
             if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Loc))
@@ -136,7 +144,7 @@ class Town
             else this._Pointer.Available();
             this._Pointer.SetLocation(Loc, this._Current);
             this._Pointer.Toggle(true);
-            this._Grid.Position.Z = 0.1 * (this._Current+1);
+            this._Grid.Position.Z = 0.05 * (this._Current+1);
             this._Grid.Active = true;
         }
         else

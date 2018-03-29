@@ -480,21 +480,21 @@ let BuildingsList =
         Income:
         {
             Name: "Jewel",
-            Income: 10
+            Income: 0
         },
         Price:
         [
             {
                 Name: "Marble",
-                Amount: 10
+                Amount: 3
             },
             {
                 Name: "Jewel",
-                Amount: 10
+                Amount: 3
             },
             {
                 Name: "Gold",
-                Amount: 10
+                Amount: 3
             }
 
         ],

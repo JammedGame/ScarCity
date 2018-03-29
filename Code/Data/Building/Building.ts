@@ -117,7 +117,7 @@ class Building extends TBX.Tile
         this.Position = Location;
         if(this._Unitar)
         {
-            this.Position = new TBX.Vertex(960,540,2);
+            this.Position = new TBX.Vertex(960,540,4.4);
             this.Size = new TBX.Vertex(1000,800,1);
         }
         for(let i in this._Satelites)
@@ -131,7 +131,7 @@ class Building extends TBX.Tile
             }
             let Loc:TBX.Vertex = FieldTransform.FieldWorldCoords(SLocation);
             Loc.Y -= VERTICAL_OFFSET;
-            Loc.Z = 0.1 * (Floor+1) + FieldTransform.FieldZPosition(SLocation);
+            Loc.Z = 0.05 * (Floor+1) + FieldTransform.FieldZPosition(SLocation);
             Satelite.Position = Loc;
         }
     }
