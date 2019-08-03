@@ -1,6 +1,6 @@
 export { StoreItem }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Building } from "./../Data/Building/Building";
 import { Resource } from "./../Data/Resource/Resource";

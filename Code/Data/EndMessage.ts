@@ -1,6 +1,6 @@
 export { EndMessage }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { MenuButton } from "./../Menu/MenuButton";
 

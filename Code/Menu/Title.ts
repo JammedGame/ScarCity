@@ -1,6 +1,6 @@
 export { Title }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 class Title extends TBX.Label
 {

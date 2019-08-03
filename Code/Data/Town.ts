@@ -1,6 +1,6 @@
 export { Town }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Title } from "./../Menu/Title";
 import { MenuButton } from "./../Menu/MenuButton";

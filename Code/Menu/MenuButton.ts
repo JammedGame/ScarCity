@@ -1,6 +1,6 @@
 export { MenuButton }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 class MenuButton extends TBX.Button
 {
@@ -28,7 +28,7 @@ class MenuButton extends TBX.Button
         this.Size.X = 350;
         this.Size.Y = 100;
         this.Padding = 15;
-        this.TextSize = 45;
+        this.TextSize = 70;
         this.Events.MouseEnter.push(this.MouseEnter.bind(this));
         this.Events.MouseLeave.push(this.MouseLeave.bind(this));
     }

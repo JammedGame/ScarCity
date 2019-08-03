@@ -1,6 +1,6 @@
 export { Building }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Layout } from "./../Layout/Layout";
 import { Resource } from "./../Resource/Resource";
@@ -55,6 +55,7 @@ class Building extends TBX.Tile
             this._Income = new Resource();
             this._Price = new ResourceSet();
             this._Structure = new Layout(null, new TBX.Vertex(2,2));
+            this.Material.Sampling = TBX.TextureSamplingType.Linear;
             this.Active = false;
         }
     }

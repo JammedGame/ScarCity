@@ -1,6 +1,6 @@
 export { BuildingsPool }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Layout } from "./../Layout/Layout";
 import { Building } from "./Building";
@@ -35,6 +35,7 @@ class BuildingsPool
         {
             let New = new Building(null, BuildingsList[i].Name);
             New.Unitar = BuildingsList[i].Unitar;
+            New.Material.Sampling = TBX.TextureSamplingType.Linear;
             New.Structure.Create(new TBX.Vertex(BuildingsList[i].Structure.X, BuildingsList[i].Structure.Y), BuildingsList[i].Structure.Fields);
             for(let j in BuildingsList[i].Foundations)
             {

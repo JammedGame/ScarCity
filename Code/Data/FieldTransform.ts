@@ -1,6 +1,6 @@
 export { FieldTransform }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 const FLOOR_SIZE = 4;
 const TOWN_SIZE = 1000;

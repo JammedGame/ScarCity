@@ -1,6 +1,6 @@
 export { Store }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { GameScene } from "./GameScene";
 import { StoreItem } from "./StoreItem";

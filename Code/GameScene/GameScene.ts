@@ -1,6 +1,6 @@
 export { GameScene };
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Town } from "./../Data/Town";
 import { Store } from "./Store";

@@ -1,6 +1,6 @@
 export { Menu };
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Title } from "./Title";
 import { Credits } from "./Credits";
@@ -61,7 +61,7 @@ class Menu extends TBX.Scene2D
     }
     public PlayClick(G:any, Args:any) : void
     {
-        TBX.Runner.Current.SwitchScene("Game", false);
+        TBX.Runner.Current.SwitchScene("Game");
     }
     public CreditsClick(G:any, Args:any) : void
     {

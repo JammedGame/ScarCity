@@ -1,6 +1,6 @@
 export { Floor }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Layout } from "./Layout/Layout";
 import { Building } from "./Building/Building";

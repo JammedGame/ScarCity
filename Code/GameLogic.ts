@@ -1,6 +1,6 @@
 export { GameLogic };
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Menu } from "./Menu/Menu";
 import { GameScene } from "./GameScene/GameScene";
@@ -22,7 +22,7 @@ class GameLogic
     }
     public Run() : void
     {
-        this._Runner.SwitchScene("Menu", false);
+        this._Runner.SwitchScene("Menu");
         this._Runner.Run();
     }
 }
