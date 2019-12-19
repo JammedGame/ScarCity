@@ -27,7 +27,7 @@ class MenuButton extends TBX.Button
         this.Border.Radius = 3;
         this.Size.X = 350;
         this.Size.Y = 100;
-        this.Padding = 15;
+        this.Padding = 18;
         this.TextSize = 70;
         this.Events.MouseEnter.push(this.MouseEnter.bind(this));
         this.Events.MouseLeave.push(this.MouseLeave.bind(this));

@@ -12,7 +12,7 @@ class GameLogic
     public constructor()
     {
         TBX.Settings.GlobalFontScale = 0.65;
-        TBX.Settings.GlobalFontFamily = "IBM Plex Sans Condensed";
+        TBX.Settings.GlobalFontFamily = "Lato";
         this._Game = new TBX.Game();
         this._Game.Name = "ScarCity";
         this._Runner = new TBX.Runner(this._Game, TBX.DrawEngineType.ThreeJS);
