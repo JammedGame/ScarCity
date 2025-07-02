@@ -44,19 +44,19 @@ class Store
     {   
         let Overlay:TBX.Tile = TBX.SceneObjectUtil.CreateTile("Overlay", null, new TBX.Vertex(HORIZONTAL_POSITION, 540), new TBX.Vertex(250,1920,1));
         Overlay.Paint = TBX.Color.FromRGBA(50,50,50,50);
-        this._Scene.Attach(Overlay);
+        //this._Scene.Attach(Overlay);
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
         this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["Resources/Textures/Icons/Up.png"], new TBX.Vertex(HORIZONTAL_POSITION, 60), new TBX.Vertex(60,85,1));
         this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["Resources/Textures/Icons/Down.png"], new TBX.Vertex(HORIZONTAL_POSITION, 1020), new TBX.Vertex(60,85,1));
         this._Up.Events.Click.push(this.UpClick.bind(this));
         this._Down.Events.Click.push(this.DownClick.bind(this));
-        this._Scene.Attach(this._Up);
-        this._Scene.Attach(this._Down);
+        //this._Scene.Attach(this._Up);
+        //this._Scene.Attach(this._Down);
         for(let i = 0; i < this._Pool.Pool.length; i ++)
         {
             let Item:StoreItem = new StoreItem(null, this._Pool.Pool[i]);
             this._Items.push(Item);
-            this._Scene.Attach(Item);
+            //this._Scene.Attach(Item);
         }
         this.Positionate();
     }

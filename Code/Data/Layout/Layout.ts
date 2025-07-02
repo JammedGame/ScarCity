@@ -95,7 +95,6 @@ class Layout
             {
                 Line += this._Fields[j * this._Size.X + i] + " ";
             }
-            console.log(Line);
         }
     }
 }

@@ -1,4 +1,56 @@
 body
 {
     font-family: 'Lato', sans-serif;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.store-item {
+    transition: all 0.3s linear;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow-y: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    cursor: pointer !important;
+    border-radius: 0 3vh 3vh 0 !important;
+    padding: 0 1vh 0 0 !important;
+}
+
+.store-item.affordable:hover {
+    filter: contrast(120%);
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.store-item.affordable:hover .cost-panel {
+    filter: contrast(120%);
+}
+
+.store-item.affordable.active {
+    filter: contrast(120%);
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.store-item.affordable.active .cost-panel {
+    filter: contrast(120%);
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.cost-panel {
+    transition: all 0.3s linear;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow-y: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 0.5vh 0 !important;
+    gap: 0.5vh;
 }

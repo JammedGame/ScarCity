@@ -12,30 +12,20 @@ class ResourcePanel
 {
     private _Scene:GameScene;
     private _Set:ResourceSet;
-    private _Tags:TBX.Label[];
+    private _Tags:TBX.UI.Label[];
     private _Icons:TBX.Tile[];
     public get Set():ResourceSet { return this._Set; }
-    public constructor(Old?:ResourcePanel, Scene?:GameScene)
+    public constructor(Scene: GameScene, Set: ResourceSet)
     {
         this._Tags = [];
         this._Icons = [];
         if(Scene) this._Scene = Scene;
-        if(Old)
-        {
-            this._Set = Old._Set.Copy();
-            for(let i in Old._Tags) this._Tags.push(Old._Tags[i].Copy());
-            for(let i in Old._Icons) this._Icons.push(Old._Icons[i].Copy());
-        }
-        else
-        {
-            this._Set = new ResourceSet();
-            this._Set.InitGlobal();
-            this.Init();
-        }
+        this._Set = Set;
+        this.Init();
     }
     public Copy(Scene:GameScene) : ResourcePanel
     {
-        return new ResourcePanel(this, Scene);
+        return new ResourcePanel(Scene, this.Set.Copy());
     }
     private Init() : void
     {
@@ -49,12 +39,12 @@ class ResourcePanel
             NIcon.Collection = ResourceArt.Single;
             NIcon.Index = ResourceArt.FindIndex(Item.Name);
             NIcon.Position = new TBX.Vertex(HORIZONTAL_POSITION + 30, 100 + i * 90, 1);
-            let NTag = new TBX.Label(null, Item.Amount.toString());
+            let NTag = new TBX.UI.Label(null, Item.Amount.toString());
             NTag.Size = new TBX.Vertex(200,40,1);
-            NTag.Border.Width = 0;
+            NTag.Style.Border.Width = 0;
             NTag.BackColor = TBX.Color.Empty;
             NTag.ForeColor = TBX.Color.White;
-            NTag.TextSize = 35;
+            NTag.Style.Text.Size = 35;
             NTag.Position = new TBX.Vertex(HORIZONTAL_POSITION - 50, 100 + i * 90, 1);
             this._Icons.push(NIcon);
             this._Tags.push(NTag);

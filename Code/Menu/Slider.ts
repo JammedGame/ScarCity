@@ -37,8 +37,9 @@ class Slider extends TBX.Tile
         this._Pointer = TBX.SceneObjectUtil.CreateTile("SliderPointer", null, new TBX.Vertex(), new TBX.Vertex(800, 50, 1));
         this._Pointer.Paint = TBX.Color.White;
         this.Events.Click.push(this.Click.bind(this));
-        let Text:Title = new Title(null, "Volume", new TBX.Vertex(960, 150));
-        Text.TextSize = 45;
+        let Text:Title = new Title(null, "Volume", new TBX.Vertex(0, 150));
+        Text.Dock = TBX.UI.DockType.Top;
+        Text.Style.Text.Size = 45;
         Text.Size.Y = 80;
         this._Label = Text;
     }

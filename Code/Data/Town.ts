@@ -58,7 +58,7 @@ class Town
     {
         this.InitBackground();
         this._Floors.push(new Floor(null, 0));
-        this._Base = TBX.SceneObjectUtil.CreateTile("Base", ["Resources/Textures/Town/Base.png"], new TBX.Vertex(960, TOWN_CENTER+260), new TBX.Vertex(1000,2000));
+        this._Base = TBX.SceneObjectUtil.CreateTile("Base", ["Resources/Textures/Town/Base.png"], new TBX.Vertex(960, TOWN_CENTER+250), new TBX.Vertex(1000,2000));
         this._Grid = TBX.SceneObjectUtil.CreateTile("Grid", ["Resources/Textures/Town/Grid.png"], new TBX.Vertex(960, TOWN_CENTER), new TBX.Vertex(1000,1000));
         this._Grid.Paint = TBX.Color.FromString("#DFDFDF");
         this._Grid.Active = false;
@@ -69,7 +69,7 @@ class Town
         this._Scene.Events.TouchStart.push(this.Touch.bind(this));
         this._Indicator = new Title(null, "Floor: 1", new TBX.Vertex(1770, 920, 1));
         this._Indicator.Size.Y = 80;
-        this._Indicator.TextSize = 35;
+        this._Indicator.Style.Text.Size = 35;
         this._Scene.Attach(this._Indicator);
         this._Restart = TBX.SceneObjectUtil.CreateTile("Title", ["Resources/Textures/Icons/Restart.png"], new TBX.Vertex(1550, 100, 1), new TBX.Vertex(60,60));
         this._Restart.Events.Click.push(this.Restart.bind(this));
@@ -107,15 +107,21 @@ class Town
         this._Scene.Attach(this._Down);
         this.UpdateMovers();
     }
-    public SetPointer(Selected:Building) : void
+    public SetPointer(Selected: Building | null) : void
     {
         if(this._Finished) return;
+        if (Selected === null) {
+            this._Scene.Remove(this._Pointer);
+            this._Pointer = null;
+            return;
+        }
         if(this._Pointer)
         {
             this._Scene.Remove(this._Pointer);
             this._Pointer = null;
         }
         this._Pointer = Selected.Copy();
+        this._Pointer.SetColor(TBX.Color.FromRGBA(0, 255, 0, 255));
         this._Pointer.Position.Z = 1;
         this._Pointer.Data["OffsetX"] = Selected.Data["OffsetX"];
         this._Pointer.Data["OffsetY"] = Selected.Data["OffsetY"];
@@ -209,8 +215,7 @@ class Town
         }
         this._Floors[this._Current].Buildings.push(NewBuilding);
         this._Scene.Attach(NewBuilding);
-        this._Scene.Remove(this._Pointer);
-        this._Pointer = null;
+        (this._Scene as GameScene).SetSelection(null);
         if(this._Current + 1 == this._Floors.length) this._Floors.push(new Floor(null, this._Floors.length));
         this.UpdateMovers();
     }

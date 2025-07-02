@@ -387,7 +387,6 @@ let BuildingsList =
             { X:2, Y:3, Fields:[0,1,0,0,1,0] },
             { X:2, Y:3, Fields:[0,0,1,1,0,0] },
             { X:2, Y:3, Fields:[0,0,1,0,1,0] }
-
         ]
     },
     {

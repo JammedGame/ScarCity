@@ -11,9 +11,9 @@ const ICON_SIZE = 150;
 
 class StoreItem extends TBX.Tile
 {
-    private _IncomeTag:TBX.Label;
+    private _IncomeTag:TBX.UI.Label;
     private _IncomeIcon:TBX.Tile;
-    private _PriceTags:TBX.Label[];
+    private _PriceTags:TBX.UI.Label[];
     private _PriceIcons:TBX.Tile[];
     private _Building:Building;
     private _OnSelect:Function;
@@ -60,12 +60,12 @@ class StoreItem extends TBX.Tile
         this._IncomeIcon = TBX.SceneObjectUtil.CreateTile("IncomeIcon", null, new TBX.Vertex(), new TBX.Vertex(50,50,1));
         this._IncomeIcon.Collection = ResourceArt.Single;
         this._IncomeIcon.Index = ResourceArt.FindIndex(this._Building.Income.Name);
-        this._IncomeTag = new TBX.Label(null, "+ "+this._Building.Income.Income);
+        this._IncomeTag = new TBX.UI.Label(null, "+ "+this._Building.Income.Income);
         this._IncomeTag.Size = new TBX.Vertex(200,30,1);
-        this._IncomeTag.Border.Width = 0;
+        this._IncomeTag.Style.Border.Width = 0;
         this._IncomeTag.BackColor = TBX.Color.Empty;
         this._IncomeTag.ForeColor = TBX.Color.White;
-        this._IncomeTag.TextSize = 20;
+        this._IncomeTag.Style.Text.Size = 20;
         for(let i = 0; i < this._Building.Price.Bundle.length; i++)
         {
             let PItem:Resource = this._Building.Price.Bundle[i];
@@ -74,12 +74,12 @@ class StoreItem extends TBX.Tile
             NIcon.Index = ResourceArt.FindIndex(PItem.Name);
             NIcon.Data["Offset"] = 150 - i * 50 - 30;
             NIcon.Active = TBX.Runner.Current.TouchscreenDevice();
-            let NTag = new TBX.Label(null, "- "+PItem.Amount);
+            let NTag = new TBX.UI.Label(null, "- "+PItem.Amount);
             NTag.Size = new TBX.Vertex(200,30,1);
-            NTag.Border.Width = 0;
+            NTag.Style.Border.Width = 0;
             NTag.BackColor = TBX.Color.Empty;
             NTag.ForeColor = TBX.Color.White;
-            NTag.TextSize = 20;
+            NTag.Style.Text.Size = 20;
             NTag.Active = TBX.Runner.Current.TouchscreenDevice();
             this._PriceIcons.push(NIcon);
             this._PriceTags.push(NTag);
@@ -93,7 +93,8 @@ class StoreItem extends TBX.Tile
     {
         this.Position = Position;
         this._IncomeIcon.Position = new TBX.Vertex(Position.X + 80, Position.Y + 80, 2);
-        this._IncomeTag.Position = new TBX.Vertex(Position.X + 80, Position.Y + 50, 2);
+        let newTagLocation = this._IncomeIcon.Position.Copy();
+        this._IncomeTag.Position = new TBX.Vertex(newTagLocation.X, newTagLocation.Y, 2);
         for(let i in this._PriceIcons)
         {
             this._PriceTags[i].Position = new TBX.Vertex(Position.X + 150, Position.Y - 60 + this._PriceIcons[i].Data["Offset"], 2);

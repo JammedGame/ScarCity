@@ -2,7 +2,7 @@ export { Title }
 
 import * as TBX from "toybox-engine";
 
-class Title extends TBX.Label
+class Title extends TBX.UI.Label
 {
     public constructor(Old?:Title, Text?:string, Position?:TBX.Vertex)
     {
@@ -21,10 +21,10 @@ class Title extends TBX.Label
     {
         this.BackColor = TBX.Color.Empty;
         this.ForeColor = TBX.Color.White;
-        this.Border.Width = 0;
+        this.Style.Border.Width = 0;
         this.Size.X = 1200;
         this.Size.Y = 400;
-        this.Padding = 20;
-        this.TextSize = 150;
+        this.Style.Padding.All = 20;
+        this.Style.Text.Size = 150;
     }
 }
