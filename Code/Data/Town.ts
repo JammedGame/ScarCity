@@ -2,15 +2,13 @@ export { Town }
 
 import * as TBX from "toybox-engine";
 
-import { Title } from "./../Menu/Title";
-import { MenuButton } from "./../Menu/MenuButton";
 import { Floor } from "./Floor";
-import { Layout } from "./Layout/Layout";
+import { Title } from "./../Menu/Title";
+import { EndMessage } from "./EndMessage";
 import { Building } from "./Building/Building";
 import { FieldTransform } from "./FieldTransform";
 import { GameScene } from "./../GameScene/GameScene";
 import { SoundManager } from "./../Menu/SoundManager";
-import { EndMessage } from "./EndMessage";
 
 const TOWN_SIZE = 1000;
 const TOWN_CENTER = 650;
@@ -23,16 +21,15 @@ class Town
     private _Scene:TBX.Scene2D;
     private _Base:TBX.Tile;
     private _Grid:TBX.Tile;
-    private _Up:TBX.Tile;
-    private _Down:TBX.Tile;
     private _Sky:TBX.Tile;
     private _Stars:TBX.Tile;
     private _Clouds:TBX.Tile;
     private _Floors:Floor[];
     private _Pointer:Building;
-    private _Indicator:Title;
-    private _Restart:TBX.Tile;
     private _SavedLoc:TBX.Vertex;
+    public get finished(): boolean { return this._Finished; }
+    public get currentFloor(): number { return this._Current; }
+    public get numberOfFloors(): number { return this._Floors.length; }
     public constructor(Old?:Town, Scene?:TBX.Scene2D)
     {
         this._Floors = [];
@@ -54,6 +51,19 @@ class Town
     {
         return new Town(this, Scene);
     }
+    public Restart()
+    {
+        this._Current = 0;
+        this._Base.Position = new TBX.Vertex(960, TOWN_CENTER + 250);
+        this._Sky.Position = new TBX.Vertex(960, TOWN_CENTER - 1624);
+        this._Stars.Position = new TBX.Vertex(960, TOWN_CENTER - 1624);
+        this._Clouds.Position = new TBX.Vertex(960, TOWN_CENTER - 1624);
+        for(let i in this._Floors) this._Floors[i].Destroy(this._Scene);
+        this._Floors = [];
+        this._Floors.push(new Floor(null, 0));
+        this._Finished = false;
+        this._End.Toggle(false);
+    }
     private Init() : void
     {
         this.InitBackground();
@@ -67,26 +77,8 @@ class Town
         this._Scene.Events.Click.push(this.MouseClick.bind(this));
         this._Scene.Events.MouseMove.push(this.MouseMove.bind(this));
         this._Scene.Events.TouchStart.push(this.Touch.bind(this));
-        this._Indicator = new Title(null, "Floor: 1", new TBX.Vertex(1770, 920, 1));
-        this._Indicator.Size.Y = 80;
-        this._Indicator.Style.Text.Size = 35;
-        this._Scene.Attach(this._Indicator);
-        this._Restart = TBX.SceneObjectUtil.CreateTile("Title", ["Resources/Textures/Icons/Restart.png"], new TBX.Vertex(1550, 100, 1), new TBX.Vertex(60,60));
-        this._Restart.Events.Click.push(this.Restart.bind(this));
-        this._Scene.Attach(this._Restart);
-        this._End = new EndMessage(null, this.Restart.bind(this));
+        this._End = new EndMessage(null, () => (this._Scene as GameScene).Restart());
         this._Scene.Attach(this._End);
-        this.InitMovers();
-    }
-    private Restart()
-    {
-        (<GameScene>this._Scene).Resources.InitGlobal();
-        while(this._Current != 0) this.DownClick();
-        for(let i in this._Floors) this._Floors[i].Destroy(this._Scene);
-        this._Floors = [];
-        this._Floors.push(new Floor(null, 0));
-        this._Finished = false;
-        this._End.Toggle(false);
     }
     private InitBackground() : void
     {
@@ -96,16 +88,6 @@ class Town
         this._Scene.Attach(this._Sky);
         this._Scene.Attach(this._Stars);
         this._Scene.Attach(this._Clouds);
-    }
-    private InitMovers() : void
-    {
-        this._Up = TBX.SceneObjectUtil.CreateTile("Up", ["Resources/Textures/Icons/Up.png"], new TBX.Vertex(1720, 1000, 1), new TBX.Vertex(80,100,1));
-        this._Down = TBX.SceneObjectUtil.CreateTile("Down", ["Resources/Textures/Icons/Down.png"], new TBX.Vertex(1820, 1000, 1), new TBX.Vertex(80,100,1));
-        this._Up.Events.Click.push(this.UpClick.bind(this));
-        this._Down.Events.Click.push(this.DownClick.bind(this));
-        this._Scene.Attach(this._Up);
-        this._Scene.Attach(this._Down);
-        this.UpdateMovers();
     }
     public SetPointer(Selected: Building | null) : void
     {
@@ -121,7 +103,6 @@ class Town
             this._Pointer = null;
         }
         this._Pointer = Selected.Copy();
-        this._Pointer.SetColor(TBX.Color.FromRGBA(0, 255, 0, 255));
         this._Pointer.Position.Z = 1;
         this._Pointer.Data["OffsetX"] = Selected.Data["OffsetX"];
         this._Pointer.Data["OffsetY"] = Selected.Data["OffsetY"];
@@ -196,15 +177,11 @@ class Town
     private Build(Location:TBX.Vertex) : void
     {
         if(!this._Floors[this._Current].Layout.ApplyAble(this._Pointer.Structure, Location)) return;
-        if(this._Current != 0 && !this._Floors[this._Current-1].Layout.Copy().Invert().ApplyAbleArray(this._Pointer.Foundations, Location))
-        {
-            return;
-        }
+        if(this._Current != 0 && !this._Floors[this._Current-1].Layout.Copy().Invert().ApplyAbleArray(this._Pointer.Foundations, Location)) return;
         SoundManager.Single.Effect();
-        let NewBuilding:Building = this._Pointer.Copy();
-        (<GameScene>this._Scene).Resources.Pay(NewBuilding.Price);
-        (<GameScene>this._Scene).Resources.Receive(NewBuilding.Income);
-        (<GameScene>this._Scene).UpdateRes();
+        let NewBuilding: Building = this._Pointer.Copy();
+        (<GameScene>this._Scene).resources.Pay(NewBuilding.Price);
+        (<GameScene>this._Scene).resources.Receive(NewBuilding.Income);
         this._Floors[this._Current].Layout.Apply(NewBuilding.Structure, Location);
         NewBuilding.SetLocation(Location, this._Current);
         if(NewBuilding.Unitar)
@@ -215,20 +192,21 @@ class Town
         }
         this._Floors[this._Current].Buildings.push(NewBuilding);
         this._Scene.Attach(NewBuilding);
-        (this._Scene as GameScene).SetSelection(null);
         if(this._Current + 1 == this._Floors.length) this._Floors.push(new Floor(null, this._Floors.length));
-        this.UpdateMovers();
+        (this._Scene as GameScene).FinishBuild();
+        this.ShadeFloors();
     }
-    private UpClick() : void
+    public UpClick() : void
     {
-        if(this._Finished) return;
-        if(!this._Up.Active) return;
-        this._Floors[this._Current+1].Toggle(true);
-        this._Current++;
-        for(let i in this._Floors) this._Floors[i].Up();
-        this._Base.Position.Y += 138;
-        this.UpBackground();
-        this.UpdateMovers();
+        if (this._Finished) return;
+        if (this.currentFloor + 1 < this.numberOfFloors) {
+            this._Floors[this._Current+1].Toggle(true);
+            this._Current++;
+            for(let i in this._Floors) this._Floors[i].Up();
+            this._Base.Position.Y += 138;
+            this.UpBackground();
+            this.ShadeFloors();
+        }
     }
     private UpBackground() : void
     {
@@ -236,29 +214,23 @@ class Town
         this._Stars.Position.Y += 92;
         this._Clouds.Position.Y += 115;
     }
-    private DownClick() : void
+    public DownClick() : void
     {
         if(this._Finished) return;
-        if(!this._Down.Active) return;
-        this._Current--;
-        for(let i in this._Floors) this._Floors[i].Down();
-        this._Floors[this._Current+1].Toggle(false);
-        this._Base.Position.Y -= 138;
-        this.DownBackground();
-        this.UpdateMovers();
+        if (this.currentFloor > 0) {
+            this._Current--;
+            for(let i in this._Floors) this._Floors[i].Down();
+            this._Floors[this._Current+1].Toggle(false);
+            this._Base.Position.Y -= 138;
+            this.DownBackground();
+            this.ShadeFloors();
+        }
     }
     private DownBackground() : void
     {
         this._Sky.Position.Y -= 69;
         this._Stars.Position.Y -= 92;
         this._Clouds.Position.Y -= 115;
-    }
-    private UpdateMovers() : void
-    {
-        this._Indicator.Text = "Floor: " + (this._Current +1);
-        this._Down.Active = this._Current > 0;
-        this._Up.Active = this._Current + 1 < this._Floors.length;
-        this.ShadeFloors();
     }
     private ShadeFloors() : void
     {

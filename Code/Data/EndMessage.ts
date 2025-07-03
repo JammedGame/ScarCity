@@ -26,34 +26,36 @@ class EndMessage extends TBX.UI.Panel
     }
     private Init(Confirm:Function) : void
     {
-        this.Position = new TBX.Vertex(960,540);
+        this.Position = new TBX.Vertex(0,0);
         this.Size = new TBX.Vertex(800,300);
+        this.Dock = TBX.UI.DockType.Center;
         this.Active = false;
-        this.BackColor = TBX.Color.FromRGBA(50,50,50,50);
+        this.BackColor = TBX.Color.FromRGBA(0,0,0,60);
         this.Style.Border.Width = 0;
-        this.Style.Border.Radius = 3;
-        let Text = new TBX.UI.Label(null, "Congratulations! You have built The Wonder and completed the game.");
-        Text.BackColor = TBX.Color.Empty;
-        Text.ForeColor = TBX.Color.White;
-        Text.Position = new TBX.Vertex(960, 480);
-        Text.Size = new TBX.Vertex(650,80);
-        Text.Style.Border.Width = 0;
-        Text.Style.Text.Size = 30;
-        Text.Active = false;
-        this._Text = Text;
-        let Res = new MenuButton(null, "Play Again", Confirm, new TBX.Vertex(960, 620));
-        Res.Active = false;
-        Res.Style.Text.Size = 45;
-        Res.Style.Padding.All = 5;
-        Res.Size = new TBX.Vertex(250, 80);
-        
-        this._Restart = Res;
-    }
-    public OnAttach(Args:any) : void
-    {
-        super.OnAttach(Args);
-        Args.Scene.Attach(this._Text);
-        Args.Scene.Attach(this._Restart);
+        this.Style.Border.Radius = 30;
+
+        let text = new TBX.UI.Label(null, "Congratulations!\n You have built The Wonder and completed the game.");
+        text.BackColor = TBX.Color.Empty;
+        text.ForeColor = TBX.Color.White;
+        text.Dock = TBX.UI.DockType.Top;
+        text.Position = new TBX.Vertex(0, 50);
+        text.Size = new TBX.Vertex(750,80);
+        text.Style.Border.Width = 0;
+        text.Style.Text.Size = 42;
+        text.Style.Values.textAlign = 'center';
+        text.Active = false;
+        this._Text = text;
+        this.Attach(text);
+
+        let restart = new MenuButton(null, "Play Again", Confirm, new TBX.Vertex(420, 0));
+        restart.Dock = TBX.UI.DockType.Bottom;
+        restart.Active = false;
+        restart.Style.Text.Size = 45;
+        restart.Style.Padding.All = 5;
+        restart.Style.Values.bottom = '3vh';
+        restart.Size = new TBX.Vertex(250, 80);
+        this._Restart = restart;
+        this.Attach(restart);
     }
     public Toggle(Toggled:boolean) : void
     {

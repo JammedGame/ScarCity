@@ -2,17 +2,14 @@ export { StorePanelItem }
 
 import * as TBX from "toybox-engine";
 import { Building } from "../../Data/Building/Building";
-import { ResourceSet } from "../../Data/Resource/ResourceSet";
 import { Resource } from "../../Data/Resource/Resource";
-
-const HORIZONTAL_POSITION = 150;
+import { ResourceSet } from "../../Data/Resource/ResourceSet";
 
 class StorePanelItem extends TBX.UI.Panel {
-    private icon: TBX.UI.Panel;
-    private costPanel: TBX.UI.Panel;
+    public selected: boolean;
     private building: Building;
     private resources: ResourceSet;
-    public selected: boolean;
+    private costPanel: TBX.UI.Panel;
     public get BID(): string { return this.building.BID };
 
     public constructor(building: Building, resources: ResourceSet) {
@@ -44,7 +41,6 @@ class StorePanelItem extends TBX.UI.Panel {
         icon.Size = new TBX.Vertex(130, 130, 1);
         this.addImageToPanel(icon, 'url("Resources/Textures/Buildings/' + this.building.BID + '/' + this.building.BID + '.png")');
         icon.Style.Values.position = 'relative';
-        this.icon = icon;
         this.Attach(icon);
     }
 

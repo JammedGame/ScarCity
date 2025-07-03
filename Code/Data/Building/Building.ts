@@ -19,7 +19,6 @@ class Building extends TBX.Tile
     private _Structure:Layout;
     private _Foundations:Layout[];
     private _Satelites:TBX.Tile[];
-    private paint: TBX.Color;
     public get BID():string { return this._BID; }
     public get Income():Resource { return this._Income; }
     public set Income(value:Resource) { this._Income = value; }
@@ -34,7 +33,6 @@ class Building extends TBX.Tile
         super(Old);
         this._Foundations = [];
         this._Satelites = [];
-        this.paint = TBX.Color.White;
         if(Old)
         {
             this._BID = Old._BID;
@@ -138,9 +136,6 @@ class Building extends TBX.Tile
             Satelite.Position = Loc;
         }
     }
-    public SetColor(color: TBX.Color): void {
-        this.paint = color;
-    }
     public Toggle(Toggled:boolean) : void
     {
         for(let i in this._Satelites) this._Satelites[i].Active = Toggled;
@@ -149,7 +144,7 @@ class Building extends TBX.Tile
     {
         for(let i in this._Satelites)
         {
-            this._Satelites[i].Paint = this.paint;
+            this._Satelites[i].Paint = TBX.Color.FromRGBA(0, 255, 0, 255);
             this._Satelites[i].Modified = true;
         }
     }

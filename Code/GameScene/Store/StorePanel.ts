@@ -44,8 +44,11 @@ class StorePanel extends TBX.UI.Panel {
         (this._Scene as GameScene).SetSelection(building);
     }
 
-    public UpdateAll(): void {
-        this._indicators.forEach((indicator: StorePanelItem) => indicator.Update());
+    public Update(): void {
+        super.Update();
+        if (this._indicators) {
+            this._indicators.forEach((indicator: StorePanelItem) => indicator.Update());
+        }
     }
 
     public SetSelected(BID: string | null): void {
@@ -60,7 +63,7 @@ class StorePanel extends TBX.UI.Panel {
             this.selectedBID = BID;
             this.SetIndicatorSelected(this.selectedBID, true);
         }
-        this.UpdateAll();
+        this.Update();
     }
 
     private SetIndicatorSelected(indicatorBID: string, selected: boolean): void {
@@ -79,6 +82,7 @@ class StorePanel extends TBX.UI.Panel {
         this.Style.Values.height = '100vh';
         this.Style.Values.flexDirection = 'column';
         this.Style.Values.justifyContent = 'flex-start';
+        this.Style.Values.backdropFilter = 'blur(10px)';
         this._subPanel.Style.Values.width = '100%';
         this._subPanel.Style.Values.padding = '2vh 0';
         this._subPanel.Style.Values.display = 'flex';
