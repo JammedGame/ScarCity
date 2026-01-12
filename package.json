@@ -1,26 +1,20 @@
 {
   "name": "scarcity",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Project description",
-  "main": "build/public/scarcity.js",
+  "main": "build//scarcity.js",
   "scripts": {
-    "start": "tsc && webpack-dev-server --hot",
-    "build": "tsc && webpack --watch",
-    "prod": "tsc && webpack -p",
-    "test": "cd tests"
+    "start": "concurrently -k \"npm run build\" \"npm run serve\"",
+    "build": "tsc && vite build --watch",
+    "serve": "vite preview"
   },
-  "keywords": [
-    "scarcity"
-  ],
-  "author": "HHD",
-  "license": "MIT",
   "devDependencies": {
-    "typescript": "^3.3.1",
-    "webpack": "^3.5.3",
-    "webpack-dev-server": "^2.7.1"
+    "concurrently": "9.2.1",
+    "sass-embedded": "1.93.2",
+    "typescript": "5.9.3",
+    "vite": "7.1.10"
   },
   "dependencies": {
-    "toybox-engine": "^0.2.2",
-    "ts-loader": "^2.3.2"
+    "toybox-engine": "0.2.3"
   }
 }
