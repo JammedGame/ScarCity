@@ -23,8 +23,8 @@ class StorePanelItem extends TBX.UI.Panel {
 
     public Create(): void {
         super.Create();
-        this.Element.classList.add('store-item');
-        this.costPanel.Element.classList.add('cost-panel');
+        this.Style.Classes.Add('store-item');
+        this.costPanel.Style.Classes.Add('cost-panel');
     }
 
     private SetupStyle(): void {
@@ -50,24 +50,24 @@ class StorePanelItem extends TBX.UI.Panel {
         if (this.Element) {
             if (this.resources) {
                 if (this.resources.PayAble(this.building.Price)) {
-                    if (!this.Element.classList.contains(affordableClass)) {
-                        this.Element.classList.add(affordableClass);
+                    if (!this.Style.Classes.Contains(affordableClass)) {
+                        this.Style.Classes.Add(affordableClass);
                     }
                     this.Style.Values.opacity = '1';
                 } else {
-                    if (this.Element.classList.contains(affordableClass)) {
-                        this.Element.classList.remove(affordableClass);
+                    if (this.Style.Classes.Contains(affordableClass)) {
+                        this.Style.Classes.Remove(affordableClass);
                     }
                     this.Style.Values.opacity = '0.5';
                 }
             }
             if (this.selected) {
-                if (!this.Element.classList.contains(activeClass)) {
-                    this.Element.classList.add(activeClass);
+                if (!this.Style.Classes.Contains(activeClass)) {
+                    this.Style.Classes.Add(activeClass);
                 }
             } else {
-                if (this.Element.classList.contains(activeClass)) {
-                    this.Element.classList.remove(activeClass);
+                if (this.Style.Classes.Contains(activeClass)) {
+                    this.Style.Classes.Remove(activeClass);
                 }
             }
         }
